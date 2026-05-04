@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bac Blanc TS1 - Mai 2021 - Sujet de Mathématiques</title>
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --vert: #00853f;
+            --jaune: #fdef42;
+            --rouge: #e31b23;
+            --bleu: #0055a4;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Georgia, serif;
+            background: #f4f6f8;
+            color: #222;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--vert), #006b32);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 5px solid var(--jaune);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        header h1 {
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        header .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        header .info {
+            margin-top: 12px;
+            font-size: 0.95rem;
+            background: rgba(255, 255, 255, 0.15);
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 20px;
+        }
+
+        .meta {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            background: white;
+            padding: 15px 25px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            font-weight: 600;
+            color: #444;
+        }
+
+        .exercice {
+            background: white;
+            margin: 25px 0;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
+            border-left: 5px solid var(--bleu);
+        }
+
+        .exercice h2 {
+            color: var(--bleu);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .exercice h2::before {
+            content: "✎";
+            background: var(--bleu);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        .variante {
+            margin: 20px 0;
+            padding: 18px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border: 1px dashed #cbd5e1;
+        }
+
+        .variante h3 {
+            color: #334155;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+        }
+
+        .question {
+            margin: 14px 0 14px 20px;
+        }
+
+        .question strong {
+            color: var(--rouge);
+        }
+
+        .points {
+            float: right;
+            color: var(--rouge);
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #64748b;
+            font-size: 0.85rem;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.2rem;
+            }
+
+            .meta {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .exercice {
+                padding: 18px;
+            }
+
+            .question {
+                margin-left: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>République du Sénégal</h1>
+            <div class="subtitle">Ministère de l'Éducation nationale — Inspection d'Académie de Rufisque</div>
+            <div class="info">Examens Blancs 2020 / 2021 — Épreuve de Mathématiques TS1</div>
+        </header>
+
+        <div class="meta">
+            <span>📅 Session : Mai 2021</span>
+            <span>⏱️ Durée : 4 heures</span>
+            <span>📊 Coefficient : 4</span>
+        </div>
+
+        <div class="exercice">
+            <h2>Exercice 1 : Au choix <span class="points">(4 points)</span></h2>
+            <div class="clear"></div>
+            <p><em>Le candidat doit traiter <strong>une seule</strong> des trois variantes suivantes.</em></p>
+
+            <div class="variante">
+                <h3>Variante A — Géométrie du plan</h3>
+                <p>Dans le plan orienté, on considère un triangle isocèle $ABC$ tel que : $AB = AC$ et
+                    $(\overrightarrow{AB}, \overrightarrow{AC}) = \dfrac{\pi}{4}$.</p>
+                <p>Soit $I$ le point tel que le triangle $CAI$ soit isocèle rectangle avec $(\overrightarrow{CA},
+                    \overrightarrow{CI}) = -\dfrac{\pi}{2}$. Pour la figure, que l'on complètera en traitant les
+                    questions, on prendra $AB = 5$ cm.</p>
+                <div class="question">
+                    <strong>1)</strong> On appelle $r_A$ la rotation de centre $A$ qui transforme $B$ en $C$ et $r_C$ la
+                    rotation de centre $C$ et d'angle $-\dfrac{\pi}{2}$. On pose $f = r_A \circ r_C$.
+                    <div class="question">a) Déterminer les images par $f$ de $A$ et de $B$. <span class="points">0,25
+                            pt + 0,25 pt</span>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="question">b) Démontrer que $f$ est une rotation dont on précisera l'angle et le centre
+                        $O$. Placer $O$ sur la figure. <span class="points">0,25 pt + 0,5 pt</span>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="question">c) Quelle est la nature du quadrilatère $ABOC$ ? <span class="points">0,5
+                            pt</span>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="question">
+                    <strong>2)</strong> Soit $s$ la similitude directe de centre $O$ qui transforme $A$ en $B$. On
+                    appelle $C'$ l'image de $C$ par $s$, $H$ le milieu du segment $[BC]$ et $H'$ son image par $s$.
+                    <div class="question">a) Donner une mesure de l'angle de $s$. Montrer que $C$ appartient à la droite
+                        $(OA)$. <span class="points">0,5 pt + 0,5 pt</span>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="question">b) Donner l'image par $s$ du segment $[OA]$ et montrer que $H$ est le milieu
+                        de $[OB]$. <span class="points">0,25 pt + 0,5 pt</span>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="question">c) Montrer que $(C'H')$ est perpendiculaire à $(OB)$. En déduire que $C'$ est
+                        le centre du cercle circonscrit au triangle $OBC$. <span class="points">0,25 pt + 0,25 pt</span>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="variante">
+                <h3>Variante B — Arithmétique</h3>
+                <div class="question">
+                    <strong>1)</strong> On considère dans $\mathbb{Z}^2$ l'équation $(E) : 4x - 7y = 28$.
+                    <div class="question">a. Montrer que si $(x,y)$ est solution de $(E)$ alors $x \equiv 0 \;[7]$.
+                        <span class="points">0,5 pt</span>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="question">b. En déduire les solutions de $(E)$. <span class="points">0,5 pt</span>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="question">
+                    <strong>2)</strong> Soit $(S)$ le système défini sur $\mathbb{N}$ par $\begin{cases} x \equiv 3
+                    \;[4] \\ x \equiv 5 \;[7] \end{cases}$
+                    <div class="question">a. Vérifier que $19$ est une solution de $(S)$. <span class="points">0,25
+                            pt</span>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="question">b. Montrer que si $x$ est solution de $(S)$, alors $x \equiv 19 \;[28]$. <span
+                            class="points">0,5 pt</span>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="question">c. En déduire les solutions de $(S)$. <span class="points">0,5 pt</span>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="question">
+                    <strong>3)</strong> Soit $k$ un réel non nul.
+                    <div class="question">a. Déterminer le reste de la division euclidienne de $36^k$ par $4$. <span
+                            class="points">0,25 pt</span>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="question">b. Déterminer le reste de la division euclidienne de $5^{6k}$ par $7$. <span
+                            class="points">0,25 pt</span>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="question"><strong>4)</strong> Montrer que $2007$ est une solution de $(S)$. <span
+                        class="points">0,5 pt</span>
+                    <div class="clear"></div>
+                </div>
+                <div class="question"><strong>5)</strong> En remarquant que $19^k \equiv 1 \;[28]$, montrer que
+                    $2007^{2010} \equiv 1 \;[28]$. <span class="points">0,25 pt</span>
+                    <div class="clear"></div>
+                </div>
+                <div class="question"><strong>6)</strong> En déduire le reste de la division euclidienne de
+                    $2007^{2016}$ par $28$. <span class="points">0,5 pt</span>
+                    <div class="clear"></div>
+                </div>
+            </div>
+
+            <div class="variante">
+                <h3>Variante C — Probabilités & Suites</h3>
+                <p>Deux fabricants de voitures sortent à la même époque des voitures $V_1$ et $V_2$ et font l'un et
+                    l'autre appel à des sociétés de publicité pour promouvoir leur produit.</p>
+                <p>On appellera « acheteur potentiel de $V_1$ » (respectivement de $V_2$) tout individu qui, lors d'un
+                    sondage, indique sa préférence pour la voiture $V_1$ (respectivement $V_2$).</p>
+                <p>On notera $p_n$ (respectivement $q_n$) la probabilité qu'un individu se prononce, au
+                    $n^{\text{ième}}$ mois de la campagne publicitaire pour $V_1$ (respectivement pour $V_2$). On a
+                    ainsi $p_n + q_n = 1$.</p>
+                <p>Par sondage, on obtient avant le lancement les résultats suivants : $p_0 = 0,6$ et $q_0 = 0,4$.</p>
+                <p>On constate qu'un individu acheteur potentiel de $V_1$ a une chance sur deux de rester acheteur
+                    potentiel de $V_1$ au mois suivant et qu'un individu acheteur potentiel de $V_2$ a huit chances sur
+                    dix de rester fidèle à $V_2$.</p>
+                <div class="question">
+                    <strong>1)</strong> On note $A_n$ l'événement : « l'individu interrogé est acheteur potentiel de
+                    $V_1$ au $n^{\text{ième}}$ mois » et $B_n$ l'événement : « il est acheteur potentiel de $V_2$ au
+                    $n^{\text{ième}}$ mois ».<br>
+                    Déterminer les probabilités conditionnelles suivantes : $P(B_{n+1}/A_n)$ et $P(B_{n+1}/B_n)$. <span
+                        class="points">0,25 pt + 0,25 pt</span>
+                    <div class="clear"></div>
+                </div>
+                <div class="question"><strong>2)</strong> Montrer alors que la suite $(q_n)$ vérifie : $q_{n+1} =
+                    0,3\,q_n + 0,5$. <span class="points">0,5 pt</span>
+                    <div class="clear"></div>
+                </div>
+                <div class="question">
+                    <strong>3)</strong> On considère la suite $(u_n)$ définie pour tout entier naturel $n$ par $u_n =
+                    q_n - \dfrac{5}{7}$.
+                    <div class="question">a. Montrer que $(u_n)$ est une suite géométrique dont on précisera la raison
+                        et le premier terme. <span class="points">0,5 pt</span>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="question">b. Exprimer $q_n$ en fonction de $n$. <span class="points">0,25 pt</span>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="question"><strong>4)</strong> Déterminer la limite $l$ de $(q_n)$. Laquelle des campagnes
+                    publicitaires est la plus efficace ? <span class="points">0,25 pt + 0,75 pt</span>
+                    <div class="clear"></div>
+                </div>
+                <div class="question"><strong>5)</strong> Montrer que dès le premier mois, la campagne publicitaire a
+                    fait basculer la situation en faveur de $V_2$. <span class="points">0,75 pt</span>
+                    <div class="clear"></div>
+                </div>
+                <div class="question"><strong>6)</strong> On décide d'arrêter la campagne publicitaire lorsque $|q_n -
+                    l| \leq 0,01$. Combien de mois de campagne publicitaire sont nécessaires avant l'arrêt ? <span
+                        class="points">0,5 pt</span>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercice">
+            <h2>Exercice 2 <span class="points">(4 points)</span></h2>
+            <div class="clear"></div>
+            <p>Soit la fonction $f$ définie sur $[1, +\infty[$ par : $f(x) = \dfrac{1}{x} -
+                \ln\left(\dfrac{x+1}{x}\right)$.</p>
+            <p>En utilisant la fonction $f$, on se propose de déterminer la limite de la suite $(S_n)$ telle que : $S_n
+                = \displaystyle\sum_{k=n}^{2n} \dfrac{1}{k}$.</p>
+            <div class="question">
+                <strong>1.</strong> Soit $k$ un entier naturel non nul.
+                <div class="question">a) Établir les relations ci-dessous :
+                    $$\dfrac{1}{k+1} \leq \int_k^{k+1} \dfrac{1}{x}\,dx \leq \dfrac{1}{k} \quad\text{et}\quad
+                    \int_k^{k+1} \dfrac{1}{x}\,dx = \dfrac{1}{k} - f(k)$$ <span class="points">0,5 pt + 0,25 pt</span>
+                    <div class="clear"></div>
+                </div>
+                <div class="question">b) En déduire que pour tout entier naturel $k$ non nul : $0 \leq f(k) \leq
+                    \dfrac{1}{k(k+1)}$. <span class="points">0,5 pt</span>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="question">
+                <strong>2.</strong>
+                <div class="question">a) Déterminer deux réels $a$ et $b$ tels que : $\dfrac{1}{x(x+1)} = \dfrac{a}{x} +
+                    \dfrac{b}{x+1}$. <span class="points">0,25 pt</span>
+                    <div class="clear"></div>
+                </div>
+                <div class="question">b) Soit $S_n = \displaystyle\sum_{k=n}^{2n} \dfrac{1}{k(k+1)}$. Calculer $S_n$ en
+                    fonction de $n$ et déterminer $\displaystyle\lim_{n \to +\infty} S_n$. <span class="points">0,5 pt +
+                        0,5 pt</span>
+                    <div class="clear"></div>
+                </div>
+                <div class="question">c) Déduire des résultats de la question 1) que : $0 \leq
+                    \displaystyle\sum_{k=n}^{2n} f(k) \leq S_n$. <span class="points">0,5 pt</span>
+                    <div class="clear"></div>
+                </div>
+                <div class="question">d) Démontrer que $\displaystyle\lim_{n \to +\infty} \sum_{k=n}^{2n} f(k) = 0$.
+                    <span class="points">0,25 pt</span>
+                    <div class="clear"></div>
+                </div>
+                <div class="question">e) Montrer que $\displaystyle\sum_{k=n}^{2n} f(k) = S_n -
+                    \ln\left(\dfrac{2n+1}{n}\right)$. En déduire $\displaystyle\lim_{n \to +\infty} S_n$. <span
+                        class="points">0,5 pt + 0,5 pt</span>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercice">
+            <h2>Exercice 3 <span class="points">(4 points)</span></h2>
+            <div class="clear"></div>
+            <p>Dans cet exercice on cherche à calculer l'intégrale $I = \displaystyle\int_{-\pi/4}^{\pi/4}
+                \left(\sin(2x) + e^{-x}\cos\left(x-\dfrac{\pi}{4}\right)\right)dx$, à l'aide d'une équation
+                différentielle.</p>
+            <div class="question"><strong>1)</strong> Résoudre l'équation différentielle $(E_1) : y'' + 2y' + 2y = 0$.
+                <span class="points">0,5 pt</span>
+                <div class="clear"></div>
+            </div>
+            <div class="question">
+                <strong>2)</strong> On considère l'équation différentielle $(E) : y'' + 2y' + 2y = 4\cos(2x) -
+                2\sin(2x)$.
+                <div class="question">a) Déterminer deux réels $a$ et $b$ pour que la fonction $f_1$ définie dans
+                    $\mathbb{R}$ par $f_1(x) = a\sin(2x) + b\cos(2x)$, soit solution de $(E)$. <span class="points">0,5
+                        pt</span>
+                    <div class="clear"></div>
+                </div>
+                <div class="question">b) Soit $f$ une fonction numérique. Démontrer que $f$ est solution de $(E)$ si et
+                    seulement si la fonction $f - f_1$ est solution de $(E_1)$. <span class="points">0,5 pt</span>
+                    <div class="clear"></div>
+                </div>
+                <div class="question">c) En déduire la solution générale de l'équation $(E)$. <span class="points">0,5
+                        pt</span>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="question">
+                <strong>3)</strong>
+                <div class="question">a) Vérifier que la fonction $f$ solution de $(E)$ telle que $f(0) =
+                    \dfrac{\sqrt{2}}{2}$ et $f'(0) = 2$ est définie par : $f(x) = \sin(2x) + e^{-x}\cos\left(x -
+                    \dfrac{\pi}{4}\right)$. <span class="points">0,5 pt</span>
+                    <div class="clear"></div>
+                </div>
+                <div class="question">b) Déduire de $(E)$ l'ensemble des primitives $F$ de $f$. <span class="points">0,5
+                        pt</span>
+                    <div class="clear"></div>
+                </div>
+                <div class="question">c) En déduire la valeur de l'intégrale $I$. <span class="points">1 pt</span>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercice">
+            <h2>Problème <span class="points">(8 points)</span></h2>
+            <div class="clear"></div>
+
+            <h3 style="color:#334155; margin:15px 0 10px;">Partie A</h3>
+            <p>Soit $f$ la fonction définie par : $\begin{cases} f(x) = \dfrac{1}{\ln x} & ; x \neq 1 \\ f(0) = 0
+                \end{cases}$, et $\mathcal{C}_f$ sa courbe représentative dans un repère orthonormal $(O, \vec{\imath},
+                \vec{\jmath})$.</p>
+            <div class="question"><strong>1)</strong> Montrer que $f$ est continue sur $[0, 1[ \;\cup\; ]1, +\infty[$.
+                <span class="points">0,25 pt</span>
+                <div class="clear"></div>
+            </div>
+            <div class="question"><strong>2)</strong> Étudier la dérivabilité de $f$ en $0$. <span class="points">0,25
+                    pt</span>
+                <div class="clear"></div>
+            </div>
+            <div class="question"><strong>3)</strong> Étudier les variations de $f$, puis dresser son tableau de
+                variations. <span class="points">1 pt</span>
+                <div class="clear"></div>
+            </div>
+            <div class="question"><strong>4)</strong> Construire la courbe de $f$. On fera figurer la demi-tangente à
+                $\mathcal{C}_f$ au point d'abscisse $0$. <span class="points">1 pt</span>
+                <div class="clear"></div>
+            </div>
+
+            <h3 style="color:#334155; margin:25px 0 10px;">Partie B</h3>
+            <p>On pose $h(x) = \displaystyle\int_x^{x^2} \dfrac{dt}{\ln t}$ et $g(x) = \displaystyle\int_x^{x^2}
+                \dfrac{dt}{t\ln t}$.</p>
+            <div class="question"><strong>1)</strong> Montrer que $h$ et $g$ sont définies sur $]0, 1[ \;\cup\; ]1,
+                +\infty[$. <span class="points">0,5 pt</span>
+                <div class="clear"></div>
+            </div>
+            <div class="question"><strong>2)</strong> Montrer que la fonction $g$ est constante. <span
+                    class="points">0,5 pt</span>
+                <div class="clear"></div>
+            </div>
+            <div class="question">
+                <strong>3)</strong>
+                <div class="question">a. Montrer que la fonction $h$ est dérivable sur son ensemble de définition. <span
+                        class="points">0,5 pt</span>
+                    <div class="clear"></div>
+                </div>
+                <div class="question">b. Montrer que pour tout réel $x$ de l'ensemble de définition de $h$ : $h'(x) =
+                    \dfrac{x-1}{\ln x}$. <span class="points">0,5 pt</span>
+                    <div class="clear"></div>
+                </div>
+                <div class="question">c. Montrer que $h$ admet un prolongement par continuité en $1$. <span
+                        class="points">0,5 pt</span>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="question">
+                <strong>4)</strong>
+                <div class="question">a. Soit $x \in ]0, 1[$. Montrer que pour tout $t \in [x^2, x]$ on a :
+                    $\dfrac{1}{\ln x} \leq f(t) \leq \dfrac{1}{2\ln x}$. <span class="points">0,25 pt</span>
+                    <div class="clear"></div>
+                </div>
+                <div class="question">b. Montrer que pour tout réel $x$ appartenant à $]0, 1[ \;\cup\; ]1, +\infty[$ :
+                    $\dfrac{x^2-x}{2\ln x} \leq h(x) \leq \dfrac{x^2-x}{\ln x}$. <span class="points">0,5 pt</span>
+                    <div class="clear"></div>
+                </div>
+                <div class="question">c. En déduire la limite de $h$ en $0$ puis en $+\infty$. <span class="points">0,25
+                        pt + 0,25 pt</span>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="question">
+                <strong>5)</strong> On admet que pour tout $x \in ]0, 1[ \;\cup\; ]1, +\infty[$ on a :
+                $$\dfrac{(x^2-x)(x-1)}{2x\ln x} \leq h(x) - g(x) \leq \dfrac{(x^2-x)(x-1)}{x^2\ln x}$$
+                <div class="question">a. Déterminer $\displaystyle\lim_{x \to 1} [h(x) - g(x)]$ et $\displaystyle\lim_{x
+                    \to 1} h(x)$. <span class="points">0,25 pt + 0,25 pt</span>
+                    <div class="clear"></div>
+                </div>
+                <div class="question">b. Montrer que le prolongement par continuité de $h$ en $1$ est dérivable en $1$.
+                    <span class="points">0,5 pt</span>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="question"><strong>6)</strong> Déterminer la nature de la branche infinie de $\mathcal{C}_h$
+                courbe représentative de $h$. <span class="points">0,25 pt</span>
+                <div class="clear"></div>
+            </div>
+            <div class="question"><strong>7)</strong> Donner l'allure de $\mathcal{C}_h$ dans le repère $(O,
+                \vec{\imath}, \vec{\jmath})$. <span class="points">0,5 pt</span>
+                <div class="clear"></div>
+            </div>
+        </div>
+
+        <footer>
+            <p>INSPECTION D'ACADEMIE DE RUFISQUE — BAC BLANC MAI 2021</p>
+            <p>Page 1 / 3 &nbsp;|&nbsp; Durée : 4 heures</p>
+        </footer>
+    </div>
+</body>
+
+</html>

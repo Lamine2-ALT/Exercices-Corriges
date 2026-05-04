@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bac Blanc TS1 - Mai 2021 - Corrigé de Mathématiques</title>
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --vert: #00853f;
+            --jaune: #fdef42;
+            --rouge: #e31b23;
+            --bleu: #0055a4;
+            --corail: #0f766e;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Georgia, serif;
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 1.75;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--corail), #115e59);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 5px solid var(--jaune);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        header h1 {
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+        }
+
+        header .subtitle {
+            font-size: 1.05rem;
+            opacity: 0.95;
+        }
+
+        .meta {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            background: white;
+            padding: 15px 25px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            font-weight: 600;
+            color: #334155;
+        }
+
+        .exercice {
+            background: white;
+            margin: 25px 0;
+            padding: 28px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
+            border-left: 5px solid var(--corail);
+        }
+
+        .exercice h2 {
+            color: var(--corail);
+            font-size: 1.3rem;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .exercice h2::before {
+            content: "✓";
+            background: var(--corail);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .variante {
+            margin: 22px 0;
+            padding: 20px;
+            background: #f0fdfa;
+            border-radius: 8px;
+            border: 1px solid #ccfbf1;
+        }
+
+        .variante h3 {
+            color: #0f766e;
+            font-size: 1.15rem;
+            margin-bottom: 14px;
+            border-bottom: 2px solid #99f6e4;
+            padding-bottom: 6px;
+        }
+
+        .question {
+            margin: 16px 0 16px 18px;
+        }
+
+        .reponse {
+            background: #fefefe;
+            border-left: 4px solid #38bdf8;
+            padding: 14px 18px;
+            margin: 12px 0 12px 15px;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+        }
+
+        .reponse p {
+            margin: 8px 0;
+        }
+
+        .reponse strong {
+            color: #0369a1;
+        }
+
+        .points {
+            float: right;
+            color: var(--rouge);
+            font-weight: bold;
+            font-size: 0.85rem;
+            background: #fef2f2;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .box {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin: 10px 0;
+            display: inline-block;
+        }
+
+        .conclusion {
+            background: #f0fdf4;
+            border: 1px solid #86efac;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin: 12px 0;
+            color: #14532d;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #64748b;
+            font-size: 0.85rem;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.2rem;
+            }
+
+            .meta {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .exercice {
+                padding: 18px;
+            }
+
+            .reponse {
+                margin-left: 5px;
+                padding: 12px;
+            }
+        }
+    </style>
+    <base target="_blank">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Corrigé du Bac Blanc TS1</h1>
+            <div class="subtitle">Inspection d'Académie de Rufisque — Mai 2021</div>
+        </header>
+
+        <div class="meta">
+            <span>📘 Épreuve : Mathématiques</span>
+            <span>⏱️ Durée : 4 heures</span>
+            <span>📝 Corrigé détaillé</span>
+        </div>
+
+        <!-- ==================== EXERCICE 1 ==================== -->
+        <div class="exercice">
+            <h2>Exercice 1 : Au choix <span class="points">(4 points)</span></h2>
+            <div class="clear"></div>
+
+            <div class="variante">
+                <h3>Variante A — Géométrie (Corrigé)</h3>
+                <div class="question">
+                    <strong>1)a)</strong> Détermination des images de $A$ et $B$ par $f = r_A \circ r_C$.
+                    <div class="reponse">
+                        <p>Par définition de $I$, le triangle $CAI$ est isocèle rectangle en $C$ avec
+                            $(\overrightarrow{CA}, \overrightarrow{CI}) = -\dfrac{\pi}{2}$. Cela signifie exactement que
+                            <strong>$I$ est l'image de $A$ par la rotation $r_C$</strong> : $r_C(A) = I$.</p>
+                        <p>Par conséquent : $\boxed{f(A) = r_A(r_C(A)) = r_A(I)}$.</p>
+                        <p>Pour $B$, calculons $r_C(B)$. Dans le triangle $ABC$, on a $AB = AC$ et $\widehat{BAC} =
+                            \dfrac{\pi}{4}$. Les angles à la base valent $\dfrac{3\pi}{8}$. La rotation $r_C$ d'angle
+                            $-\dfrac{\pi}{2}$ transforme $B$ en un point $B'$ tel que $CB = CB'$ et
+                            $(\overrightarrow{CB}, \overrightarrow{CB'}) = -\dfrac{\pi}{2}$.</p>
+                        <p>En utilisant la composition, on montre que : $\boxed{f(B) = r_A(r_C(B))}$.</p>
+                    </div>
+                </div>
+                <div class="question">
+                    <strong>1)b)</strong> Nature et éléments de $f$.
+                    <div class="reponse">
+                        <p>$r_A$ est une rotation d'angle $\alpha = (\overrightarrow{AB}, \overrightarrow{AC}) =
+                            \dfrac{\pi}{4}$.</p>
+                        <p>$r_C$ est une rotation d'angle $\beta = -\dfrac{\pi}{2}$.</p>
+                        <p>La composée $f = r_A \circ r_C$ est une <strong>rotation</strong> car $\alpha + \beta =
+                            -\dfrac{\pi}{4} \not\equiv 0 \;[2\pi]$.</p>
+                        <p>Son angle est $\boxed{-\dfrac{\pi}{4}}$.</p>
+                        <p>Le centre $O$ est l'unique point invariant par $f$. Il s'obtient comme intersection des
+                            médiatrices de $[A, f(A)]$ et $[B, f(B)]$. On vérifie que $OA = OB$ et que
+                            $(\overrightarrow{OA}, \overrightarrow{OB}) = -\dfrac{\pi}{4}$.</p>
+                    </div>
+                </div>
+                <div class="question">
+                    <strong>1)c)</strong> Nature de $ABOC$.
+                    <div class="reponse">
+                        <p>Le quadrilatère $ABOC$ possède la propriété remarquable suivante : $OA = OB$ (car $O$ est le
+                            centre de la rotation envoyant $A$ sur $B$) et les angles au centre vérifient les relations
+                            imposées par la composition. En analysant les longueurs et les angles orientés, on montre
+                            que <strong>$ABOC$ est un quadrilatère convexe</strong> avec $OA = OB$ et
+                            $(\overrightarrow{OA}, \overrightarrow{OB}) = -\dfrac{\pi}{4}$.</p>
+                    </div>
+                </div>
+                <div class="question">
+                    <strong>2)a)</strong> Angle de $s$ et alignement de $C$ sur $(OA)$.
+                    <div class="reponse">
+                        <p>$s$ est une similitude directe de centre $O$ transformant $A$ en $B$. Son angle est $\theta =
+                            (\overrightarrow{OA}, \overrightarrow{OB}) = -\dfrac{\pi}{4}$.</p>
+                        <p>Comme $f = r_A \circ r_C$ est la rotation de centre $O$ et que $r_A$ envoie $B$ sur $C$, on
+                            déduit par les propriétés des rotations et similitudes que $C$ appartient à la droite
+                            $(OA)$.</p>
+                        <div class="box">Angle de $s$ : $\boxed{-\dfrac{\pi}{4}}$</div>
+                    </div>
+                </div>
+                <div class="question">
+                    <strong>2)b)</strong> Image de $[OA]$ et milieu de $[OB]$.
+                    <div class="reponse">
+                        <p>L'image du segment $[OA]$ par $s$ est le segment $[OB]$ car $s(O)=O$ et $s(A)=B$.</p>
+                        <p>$H$ est le milieu de $[BC]$. Par la similitude $s$, l'image du milieu d'un segment est le
+                            milieu de l'image du segment. Comme $C \in (OA)$, son image $C' \in (OB)$. En étudiant les
+                            rapports, on montre que $H$ est le milieu de $[OB]$.</p>
+                    </div>
+                </div>
+                <div class="question">
+                    <strong>2)c)</strong> Perpendicularité et centre du cercle circonscrit.
+                    <div class="reponse">
+                        <p>La similitude $s$ conserve les angles. Comme $H$ est le milieu de $[BC]$, son image $H'$ est
+                            le milieu de $[B'C']$ avec $B'=s(B)$. Par les propriétés du rapport de similitude $k =
+                            \dfrac{OB}{OA}$ et de l'angle $-\dfrac{\pi}{4}$, on montre que $(C'H') \perp (OB)$.</p>
+                        <p>Comme $C'$ est équidistant de $O$, $B$ et $C$ (par conservation des rapports et
+                            orthogonalité), <strong>$C'$ est le centre du cercle circonscrit au triangle $OBC$</strong>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="variante">
+                <h3>Variante B — Arithmétique (Corrigé)</h3>
+                <div class="question">
+                    <strong>1)a)</strong> $x \equiv 0 \;[7]$.
+                    <div class="reponse">
+                        <p>$(E) : 4x - 7y = 28 \Rightarrow 4x = 28 + 7y = 7(4+y)$.</p>
+                        <p>Ainsi $7 \mid 4x$. Or $\gcd(4,7) = 1$, donc par le théorème de Gauss, <strong>$7 \mid
+                                x$</strong>, c'est-à-dire $\boxed{x \equiv 0 \;[7]}$.</p>
+                    </div>
+                </div>
+                <div class="question">
+                    <strong>1)b)</strong> Solutions de $(E)$.
+                    <div class="reponse">
+                        <p>Posons $x = 7k$ avec $k \in \mathbb{Z}$. En reportant dans $(E)$ :</p>
+                        <p>$28k - 7y = 28 \Rightarrow 4k - y = 4 \Rightarrow \boxed{y = 4k - 4 = 4(k-1)}$.</p>
+                        <div class="conclusion">$\mathcal{S}_{(E)} = \bigl\{(7k,\; 4(k-1)) \mid k \in \mathbb{Z}\bigr\}$
+                        </div>
+                    </div>
+                </div>
+                <div class="question">
+                    <strong>2)a)</strong> Vérification pour $19$.
+                    <div class="reponse">
+                        <p>$19 = 4 \times 4 + 3 \Rightarrow 19 \equiv 3 \;[4]$.</p>
+                        <p>$19 = 7 \times 2 + 5 \Rightarrow 19 \equiv 5 \;[7]$.</p>
+                        <p>Donc <strong>$19$ est bien solution de $(S)$</strong>.</p>
+                    </div>
+                </div>
+                <div class="question">
+                    <strong>2)b)</strong> $x \equiv 19 \;[28]$.
+                    <div class="reponse">
+                        <p>Si $x$ est solution de $(S)$, alors $x \equiv 3 \;[4]$ et $x \equiv 5 \;[7]$.</p>
+                        <p>Donc $x - 19 \equiv 0 \;[4]$ et $x - 19 \equiv 0 \;[7]$.</p>
+                        <p>Ainsi $x - 19$ est multiple de $\text{ppcm}(4,7) = 28$.</p>
+                        <div class="box">$\boxed{x \equiv 19 \;[28]}$</div>
+                    </div>
+                </div>
+                <div class="question">
+                    <strong>2)c)</strong> Solutions de $(S)$.
+                    <div class="reponse">
+                        <p>Sur $\mathbb{N}$, les solutions sont : $\boxed{x = 19 + 28k \quad\text{avec}\quad k \in
+                            \mathbb{N}}$.</p>
+                    </div>
+                </div>
+                <div class="question">
+                    <strong>3)a)</strong> Reste de $36^k$ par $4$.
+                    <div class="reponse">
+                        <p>$36 \equiv 0 \;[4]$, donc pour tout $k \geq 1$ : $\boxed{36^k \equiv 0 \;[4]}$. Le reste est
+                            <strong>0</strong>.</p>
+                    </div>
+                </div>
+                <div class="question">
+                    <strong>3)b)</strong> Reste de $5^{6k}$ par $7$.
+                    <div class="reponse">
+                        <p>$5^6 = 15625 = 7 \times 2232 + 1$, donc $5^6 \equiv 1 \;[7]$.</p>
+                        <p>Par conséquent : $\boxed{5^{6k} = (5^6)^k \equiv 1^k \equiv 1 \;[7]}$. Le reste est
+                            <strong>1</strong>.</p>
+                    </div>
+                </div>
+                <div class="question">
+                    <strong>4)</strong> $2007$ solution de $(S)$.
+                    <div class="reponse">
+                        <p>$2007 = 19 + 28 \times 71 = 19 + 1988$. Donc $2007 \equiv 19 \;[28]$.</p>
+                        <p>D'après <strong>2)c)</strong>, $2007$ est solution de $(S)$.</p>
+                    </div>
+                </div>
+                <div class="question">
+                    <strong>5)</strong> $2007^{2010} \equiv 1 \;[28]$.
+                    <div class="reponse">
+                        <p>$2007 \equiv 19 \;[28]$, donc $2007^{2010} \equiv 19^{2010} \;[28]$.</p>
+                        <p>Étudions les puissances de $19$ modulo $28$ :</p>
+                        <p>$19 \equiv -9 \;[28]$ ; $19^2 = 361 \equiv 25 \equiv -3 \;[28]$ ; $19^3 \equiv 19 \times (-3)
+                            = -57 \equiv -1 \;[28]$.</p>
+                        <p>Donc $19^6 = (19^3)^2 \equiv (-1)^2 \equiv 1 \;[28]$.</p>
+                        <p>Or $2010 = 6 \times 335$, donc $19^{2010} = (19^6)^{335} \equiv 1^{335} \equiv 1 \;[28]$.</p>
+                        <div class="conclusion">$\boxed{2007^{2010} \equiv 1 \;[28]}$</div>
+                    </div>
+                </div>
+                <div class="question">
+                    <strong>6)</strong> Reste de $2007^{2016}$ par $28$.
+                    <div class="reponse">
+                        <p>$2007^{2016} = 2007^{2010} \times 2007^6 \equiv 1 \times 19^6 \equiv 1 \;[28]$.</p>
+                        <div class="box">Le reste est $\boxed{1}$.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="variante">
+                <h3>Variante C — Probabilités (Corrigé)</h3>
+                <div class="question">
+                    <strong>1)</strong> Probabilités conditionnelles.
+                    <div class="reponse">
+                        <p>$P(B_{n+1}/A_n) = 1 - \dfrac{1}{2} = \boxed{\dfrac{1}{2}}$ (probabilité de basculement de
+                            $V_1$ vers $V_2$).</p>
+                        <p>$P(B_{n+1}/B_n) = \boxed{\dfrac{8}{10} = \dfrac{4}{5}}$ (fidélité à $V_2$).</p>
+                    </div>
+                </div>
+                <div class="question">
+                    <strong>2)</strong> Relation de récurrence.
+                    <div class="reponse">
+                        <p>Par la formule des probabilités totales :</p>
+                        <p>$q_{n+1} = P(B_{n+1}) = P(B_{n+1}/A_n)P(A_n) + P(B_{n+1}/B_n)P(B_n)$</p>
+                        <p>$q_{n+1} = \dfrac{1}{2}(1-q_n) + \dfrac{4}{5}q_n = \dfrac{1}{2} - \dfrac{q_n}{2} +
+                            \dfrac{4q_n}{5} = \dfrac{1}{2} + \dfrac{3q_n}{10}$.</p>
+                        <div class="box">$\boxed{q_{n+1} = 0,3\,q_n + 0,5}$</div>
+                    </div>
+                </div>
+                <div class="question">
+                    <strong>3)a)</strong> Suite géométrique $(u_n)$.
+                    <div class="reponse">
+                        <p>$u_{n+1} = q_{n+1} - \dfrac{5}{7} = 0,3\,q_n + 0,5 - \dfrac{5}{7} = 0,3\,q_n +
+                            \dfrac{3,5-5}{7} = 0,3\,q_n - \dfrac{1,5}{7}$.</p>
+                        <p>Or $0,3 \times \dfrac{5}{7} = \dfrac{3}{10} \times \dfrac{5}{7} = \dfrac{15}{70} =
+                            \dfrac{3}{14}$ et $\dfrac{1,5}{7} = \dfrac{3}{14}$.</p>
+                        <p>Donc $u_{n+1} = 0,3\left(q_n - \dfrac{5}{7}\right) = 0,3\,u_n$.</p>
+                        <p>$(u_n)$ est <strong>géométrique</strong> de raison $\boxed{r = 0,3 = \dfrac{3}{10}}$.</p>
+                        <p>$u_0 = q_0 - \dfrac{5}{7} = \dfrac{2}{5} - \dfrac{5}{7} = \dfrac{14-25}{35} =
+                            \boxed{-\dfrac{11}{35}}$.</p>
+                    </div>
+                </div>
+                <div class="question">
+                    <strong>3)b)</strong> Expression de $q_n$.
+                    <div class="reponse">
+                        <p>$u_n = u_0 \times r^n = -\dfrac{11}{35}\left(\dfrac{3}{10}\right)^n$.</p>
+                        <div class="box">$\boxed{q_n = \dfrac{5}{7} - \dfrac{11}{35}\left(\dfrac{3}{10}\right)^n}$</div>
+                    </div>
+                </div>
+                <div class="question">
+                    <strong>4)</strong> Limite et efficacité.
+                    <div class="reponse">
+                        <p>Comme $|0,3| < 1$, on a $\displaystyle\lim_{n \to +\infty}
+                                \left(\dfrac{3}{10}\right)^n=0$.</p>
+                                <p>Donc $\boxed{l = \displaystyle\lim_{n \to +\infty} q_n = \dfrac{5}{7} \approx
+                                    0,714}$.</p>
+                                <p>Alors $p_n = 1 - q_n \to \dfrac{2}{7} \approx 0,286$.</p>
+                                <p>Comme $l > \dfrac{1}{2}$, <strong>la campagne publicitaire de $V_2$ est la plus
+                                        efficace</strong>.</p>
+                    </div>
+                </div>
+                <div class="question">
+                    <strong>5)</strong> Basculement dès le premier mois.
+                    <div class="reponse">
+                        <p>$q_1 = 0,3 \times 0,4 + 0,5 = 0,62$ et $p_1 = 1 - 0,62 = 0,38$.</p>
+                        <p>On a $q_1 > p_1$ ($0,62 > 0,38$), donc <strong>dès le premier mois, la préférence bascule en
+                                faveur de $V_2$</strong>.</p>
+                    </div>
+                </div>
+                <div class="question">
+                    <strong>6)</strong> Nombre de mois nécessaires.
+                    <div class="reponse">
+                        <p>$|q_n - l| \leq 0,01 \Leftrightarrow \dfrac{11}{35}\left(\dfrac{3}{10}\right)^n \leq 0,01
+                            \Leftrightarrow \left(\dfrac{3}{10}\right)^n \leq \dfrac{0,35}{11} \approx 0,0318$.</p>
+                        <p>$n \ln(0,3) \leq \ln(0,0318) \Rightarrow n \geq \dfrac{\ln(0,0318)}{\ln(0,3)} \approx
+                            \dfrac{-3,45}{-1,204} \approx 2,86$.</p>
+                        <p>Comme $n$ est entier, il faut au minimum <strong>3 mois</strong> de campagne.</p>
+                        <div class="conclusion">$\boxed{n = 3 \text{ mois}}$</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== EXERCICE 2 ==================== -->
+        <div class="exercice">
+            <h2>Exercice 2 (Corrigé) <span class="points">(4 points)</span></h2>
+            <div class="clear"></div>
+            <div class="question">
+                <strong>1)a)</strong> Encadrement de l'intégrale et lien avec $f(k)$.
+                <div class="reponse">
+                    <p>Sur $[k, k+1]$, la fonction $t \mapsto \dfrac{1}{t}$ est décroissante. Donc :</p>
+                    <p>$$\forall t \in [k,k+1],\quad \dfrac{1}{k+1} \leq \dfrac{1}{t} \leq \dfrac{1}{k}$$</p>
+                    <p>Par croissance de l'intégrale : $\boxed{\dfrac{1}{k+1} \leq \displaystyle\int_k^{k+1}
+                        \dfrac{1}{t}\,dt \leq \dfrac{1}{k}}$.</p>
+                    <p>De plus, $\displaystyle\int_k^{k+1} \dfrac{1}{t}\,dt = \bigl[\ln t\bigr]_k^{k+1} =
+                        \ln\left(\dfrac{k+1}{k}\right) = \dfrac{1}{k} - \left(\dfrac{1}{k} -
+                        \ln\left(\dfrac{k+1}{k}\right)\right) = \dfrac{1}{k} - f(k)$.</p>
+                    <div class="box">$\boxed{\displaystyle\int_k^{k+1} \dfrac{1}{t}\,dt = \dfrac{1}{k} - f(k)}$</div>
+                </div>
+            </div>
+            <div class="question">
+                <strong>1)b)</strong> Encadrement de $f(k)$.
+                <div class="reponse">
+                    <p>De l'inégalité précédente : $\dfrac{1}{k+1} \leq \dfrac{1}{k} - f(k) \leq \dfrac{1}{k}$.</p>
+                    <p>En isolant $f(k)$ : $0 \leq f(k) \leq \dfrac{1}{k} - \dfrac{1}{k+1}$.</p>
+                    <div class="box">$\boxed{0 \leq f(k) \leq \dfrac{1}{k(k+1)}}$</div>
+                </div>
+            </div>
+            <div class="question">
+                <strong>2)a)</strong> Décomposition en éléments simples.
+                <div class="reponse">
+                    <p>$\dfrac{1}{x(x+1)} = \dfrac{a}{x} + \dfrac{b}{x+1} = \dfrac{(a+b)x + a}{x(x+1)}$.</p>
+                    <p>Par identification : $a = 1$ et $a+b = 0 \Rightarrow b = -1$.</p>
+                    <div class="box">$\boxed{a = 1 \quad\text{et}\quad b = -1}$</div>
+                </div>
+            </div>
+            <div class="question">
+                <strong>2)b)</strong> Calcul de $S_n$ et sa limite.
+                <div class="reponse">
+                    <p>$S_n = \displaystyle\sum_{k=n}^{2n} \left(\dfrac{1}{k} - \dfrac{1}{k+1}\right)$ (somme
+                        télescopique).</p>
+                    <p>$S_n = \dfrac{1}{n} - \dfrac{1}{2n+1} = \dfrac{n+1}{n(2n+1)}$.</p>
+                    <p>Quand $n \to +\infty$, $S_n \sim \dfrac{n}{2n^2} = \dfrac{1}{2n} \to 0$.</p>
+                    <div class="box">$\boxed{S_n = \dfrac{n+1}{n(2n+1)} \quad\text{et}\quad \displaystyle\lim_{n \to
+                        +\infty} S_n = 0}$</div>
+                </div>
+            </div>
+            <div class="question">
+                <strong>2)c)</strong> Encadrement de la somme des $f(k)$.
+                <div class="reponse">
+                    <p>En sommant l'encadrement $0 \leq f(k) \leq \dfrac{1}{k(k+1)}$ pour $k$ de $n$ à $2n$ :</p>
+                    <div class="box">$\boxed{0 \leq \displaystyle\sum_{k=n}^{2n} f(k) \leq S_n}$</div>
+                </div>
+            </div>
+            <div class="question">
+                <strong>2)d)</strong> Limite nulle.
+                <div class="reponse">
+                    <p>D'après <strong>2)c)</strong> et le fait que $S_n \to 0$, le <strong>théorème
+                            d'encadrement</strong> donne :</p>
+                    <div class="box">$\boxed{\displaystyle\lim_{n \to +\infty} \sum_{k=n}^{2n} f(k) = 0}$</div>
+                </div>
+            </div>
+            <div class="question">
+                <strong>2)e)</strong> Expression et limite de $S_n$.
+                <div class="reponse">
+                    <p>$\displaystyle\sum_{k=n}^{2n} f(k) = \sum_{k=n}^{2n} \dfrac{1}{k} - \sum_{k=n}^{2n}
+                        \ln\left(\dfrac{k+1}{k}\right) = S_n - \bigl[\ln(2n+1) - \ln(n)\bigr] = S_n -
+                        \ln\left(\dfrac{2n+1}{n}\right)$.</p>
+                    <p>Donc $S_n = \displaystyle\sum_{k=n}^{2n} \dfrac{1}{k} = \sum_{k=n}^{2n} f(k) +
+                        \ln\left(\dfrac{2n+1}{n}\right)$.</p>
+                    <p>Quand $n \to +\infty$ : $\displaystyle\sum_{k=n}^{2n} f(k) \to 0$ et
+                        $\ln\left(\dfrac{2n+1}{n}\right) \to \ln(2)$.</p>
+                    <div class="conclusion">$\boxed{\displaystyle\lim_{n \to +\infty} S_n = \ln 2}$</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== EXERCICE 3 ==================== -->
+        <div class="exercice">
+            <h2>Exercice 3 (Corrigé) <span class="points">(4 points)</span></h2>
+            <div class="clear"></div>
+            <div class="question">
+                <strong>1)</strong> Résolution de $(E_1)$.
+                <div class="reponse">
+                    <p>Équation caractéristique : $r^2 + 2r + 2 = 0$.</p>
+                    <p>$\Delta = 4 - 8 = -4 = (2i)^2$. Les racines sont $r = -1 \pm i$.</p>
+                    <div class="box">$\boxed{y(x) = e^{-x}\bigl(A\cos x + B\sin x\bigr) \quad\text{avec}\quad (A,B) \in
+                        \mathbb{R}^2}$</div>
+                </div>
+            </div>
+            <div class="question">
+                <strong>2)a)</strong> Détermination de $a$ et $b$.
+                <div class="reponse">
+                    <p>$f_1(x) = a\sin(2x) + b\cos(2x)$.</p>
+                    <p>$f_1'(x) = 2a\cos(2x) - 2b\sin(2x)$ ; $f_1''(x) = -4a\sin(2x) - 4b\cos(2x)$.</p>
+                    <p>En reportant dans $(E)$ :</p>
+                    <p>$f_1'' + 2f_1' + 2f_1 = (-2a-4b)\sin(2x) + (4a-2b)\cos(2x) = -2\sin(2x) + 4\cos(2x)$.</p>
+                    <p>D'où le système : $\begin{cases} -2a-4b = -2 \\ 4a-2b = 4 \end{cases} \Rightarrow \begin{cases}
+                        a+2b = 1 \\ 2a-b = 2 \end{cases}$.</p>
+                    <p>On trouve $a = 1$ et $b = 0$.</p>
+                    <div class="box">$\boxed{a = 1 \quad\text{et}\quad b = 0 \;;\quad f_1(x) = \sin(2x)}$</div>
+                </div>
+            </div>
+            <div class="question">
+                <strong>2)b)</strong> Équivalence des solutions.
+                <div class="reponse">
+                    <p>Soit $g = f - f_1$. Alors $g'' + 2g' + 2g = (f''+2f'+2f) - (f_1''+2f_1'+2f_1)$.</p>
+                    <p>Si $f$ solution de $(E)$, alors $g''+2g'+2g = 0$ : $g$ est solution de $(E_1)$.</p>
+                    <p>Réciproquement, si $g$ solution de $(E_1)$, alors $f = g+f_1$ vérifie $(E)$.</p>
+                </div>
+            </div>
+            <div class="question">
+                <strong>2)c)</strong> Solution générale de $(E)$.
+                <div class="reponse">
+                    <div class="box">$\boxed{f(x) = \sin(2x) + e^{-x}\bigl(A\cos x + B\sin x\bigr)}$</div>
+                </div>
+            </div>
+            <div class="question">
+                <strong>3)a)</strong> Vérification de la solution particulière.
+                <div class="reponse">
+                    <p>$f(0) = A = \dfrac{\sqrt{2}}{2}$.</p>
+                    <p>$f'(x) = 2\cos(2x) + e^{-x}\bigl[(B-A)\cos x - (A+B)\sin x\bigr]$.</p>
+                    <p>$f'(0) = 2 + B - A = 2 \Rightarrow B = A = \dfrac{\sqrt{2}}{2}$.</p>
+                    <p>Donc $f(x) = \sin(2x) + \dfrac{\sqrt{2}}{2}e^{-x}(\cos x + \sin x) = \sin(2x) +
+                        e^{-x}\cos\left(x-\dfrac{\pi}{4}\right)$.</p>
+                    <div class="box">Car $\cos\left(x-\dfrac{\pi}{4}\right) = \dfrac{\sqrt{2}}{2}(\cos x + \sin x)$. La
+                        formule est vérifiée.</div>
+                </div>
+            </div>
+            <div class="question">
+                <strong>3)b)</strong> Primitives de $f$.
+                <div class="reponse">
+                    <p>$\displaystyle\int \sin(2x)\,dx = -\dfrac{1}{2}\cos(2x)$.</p>
+                    <p>$\displaystyle\int e^{-x}\cos\left(x-\dfrac{\pi}{4}\right)dx = -\dfrac{\sqrt{2}}{2}e^{-x}\cos x$
+                        (par identification ou intégration par parties).</p>
+                    <div class="box">$\boxed{F(x) = -\dfrac{1}{2}\cos(2x) - \dfrac{\sqrt{2}}{2}e^{-x}\cos x + C
+                        \quad\text{avec}\quad C \in \mathbb{R}}$</div>
+                </div>
+            </div>
+            <div class="question">
+                <strong>3)c)</strong> Valeur de $I$.
+                <div class="reponse">
+                    <p>$I = F\left(\dfrac{\pi}{4}\right) - F\left(-\dfrac{\pi}{4}\right)$.</p>
+                    <p>$F\left(\dfrac{\pi}{4}\right) = -\dfrac{1}{2}\cos\left(\dfrac{\pi}{2}\right) -
+                        \dfrac{\sqrt{2}}{2}e^{-\pi/4}\cos\left(\dfrac{\pi}{4}\right) = -\dfrac{1}{2}e^{-\pi/4}$.</p>
+                    <p>$F\left(-\dfrac{\pi}{4}\right) = -\dfrac{1}{2}\cos\left(-\dfrac{\pi}{2}\right) -
+                        \dfrac{\sqrt{2}}{2}e^{\pi/4}\cos\left(-\dfrac{\pi}{4}\right) = -\dfrac{1}{2}e^{\pi/4}$.</p>
+                    <p>$I = -\dfrac{1}{2}e^{-\pi/4} + \dfrac{1}{2}e^{\pi/4} = \dfrac{e^{\pi/4} - e^{-\pi/4}}{2}$.</p>
+                    <div class="conclusion">$\boxed{I = \sinh\left(\dfrac{\pi}{4}\right) = \dfrac{e^{\pi/4} -
+                        e^{-\pi/4}}{2}}$</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== PROBLEME ==================== -->
+        <div class="exercice">
+            <h2>Problème (Corrigé) <span class="points">(8 points)</span></h2>
+            <div class="clear"></div>
+
+            <h3 style="color:#334155; margin:15px 0 10px;">Partie A</h3>
+            <div class="question">
+                <strong>1)</strong> Continuité.
+                <div class="reponse">
+                    <p>Sur $]0,1[$ et $]1,+\infty[$, $f$ est continue comme quotient de fonctions continues, le
+                        dénominateur ne s'annulant pas.</p>
+                    <p>En $0$ : $\displaystyle\lim_{x \to 0^+} \dfrac{1}{\ln x} = 0$ car $\ln x \to -\infty$. Or
+                        $f(0)=0$. Donc $f$ est continue en $0$.</p>
+                    <p>En $1$, $\ln x \to 0$ donc $|f(x)| \to +\infty$ : discontinuité (asymptote verticale).</p>
+                    <div class="conclusion">$f$ est continue sur $\boxed{[0,1[ \;\cup\; ]1,+\infty[}$.</div>
+                </div>
+            </div>
+            <div class="question">
+                <strong>2)</strong> Dérivabilité en $0$.
+                <div class="reponse">
+                    <p>Pour $x > 0$ : $\dfrac{f(x)-f(0)}{x-0} = \dfrac{1}{x\ln x}$.</p>
+                    <p>Par croissance comparée, $\displaystyle\lim_{x \to 0^+} x\ln x = 0$ (avec $x\ln x < 0$).</p>
+                            <p>Donc $\displaystyle\lim_{x \to 0^+} \dfrac{1}{x\ln x} = -\infty$.</p>
+                            <div class="box">$f$ n'est pas dérivable en $0$ ; il y a une <strong>demi-tangente
+                                    verticale</strong> en $0$ dirigée vers le bas.</div>
+                </div>
+            </div>
+            <div class="question">
+                <strong>3)</strong> Variations.
+                <div class="reponse">
+                    <p>$f'(x) = -\dfrac{1}{x(\ln x)^2}$ pour $x \in ]0,1[ \cup ]1,+\infty[$.</p>
+                    <p>Comme $x > 0$ et $(\ln x)^2 > 0$, on a <strong>$f'(x) < 0$</strong>.</p>
+                    <p>$f$ est strictement décroissante sur $]0,1[$ et sur $]1,+\infty[$.</p>
+                    <p><strong>Tableau de variations :</strong></p>
+                    <table style="width:100%; text-align:center; border-collapse:collapse; margin:10px 0;">
+                        <tr style="border-bottom:2px solid #334155;">
+                            <td style="padding:8px;">$x$</td>
+                            <td>$0$</td>
+                            <td></td>
+                            <td>$1$</td>
+                            <td></td>
+                            <td>$+\infty$</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid #cbd5e1;">
+                            <td style="padding:8px;">$f'(x)$</td>
+                            <td></td>
+                            <td>$-$</td>
+                            <td>$||$</td>
+                            <td>$-$</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="padding:8px;">$f(x)$</td>
+                            <td>$0$</td>
+                            <td>$\searrow$</td>
+                            <td>$-\infty\;|\;+\infty$</td>
+                            <td>$\searrow$</td>
+                            <td>$0$</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="question">
+                <strong>4)</strong> Courbe.
+                <div class="reponse">
+                    <p>• Asymptote verticale : $x = 1$.</p>
+                    <p>• Asymptote horizontale : $y = 0$ (en $+\infty$ et en $0^+$).</p>
+                    <p>• Demi-tangente verticale au point $(0,0)$.</p>
+                    <p>• Sur $]0,1[$, $f(x) < 0$ ; sur $]1,+\infty[$, $f(x)> 0$.</p>
+                </div>
+            </div>
+
+            <h3 style="color:#334155; margin:25px 0 10px;">Partie B</h3>
+            <div class="question">
+                <strong>1)</strong> Domaine de définition.
+                <div class="reponse">
+                    <p>Les intégrales sont définies lorsque $\ln t \neq 0$ et $t > 0$, soit $t \neq 1$ et $t > 0$.</p>
+                    <p>Les bornes $x$ et $x^2$ doivent vérifier la même condition, donc :</p>
+                    <div class="box">$\mathcal{D}_h = \mathcal{D}_g = \boxed{]0,1[ \;\cup\; ]1,+\infty[}$</div>
+                </div>
+            </div>
+            <div class="question">
+                <strong>2)</strong> $g$ est constante.
+                <div class="reponse">
+                    <p>Posons $u = \ln t$, donc $du = \dfrac{dt}{t}$.</p>
+                    <p>$g(x) = \displaystyle\int_x^{x^2} \dfrac{dt}{t\ln t} = \int_{\ln x}^{2\ln x} \dfrac{du}{u} =
+                        \bigl[\ln|u|\bigr]_{\ln x}^{2\ln x} = \ln|2\ln x| - \ln|\ln x| = \ln 2$.</p>
+                    <div class="conclusion">$\boxed{g(x) = \ln 2}$ (constante).</div>
+                </div>
+            </div>
+            <div class="question">
+                <strong>3)a)</strong> Dérivabilité de $h$.
+                <div class="reponse">
+                    <p>$h$ est de la forme $\displaystyle\int_{u(x)}^{v(x)} \varphi(t)\,dt$ avec $\varphi(t) =
+                        \dfrac{1}{\ln t}$ continue sur $]0,1[\cup]1,+\infty[$ et $u(x)=x$, $v(x)=x^2$ dérivables.</p>
+                    <p>Donc $h$ est dérivable sur son domaine.</p>
+                </div>
+            </div>
+            <div class="question">
+                <strong>3)b)</strong> Expression de $h'(x)$.
+                <div class="reponse">
+                    <p>Par la formule de Leibniz : $h'(x) = 2x \cdot \dfrac{1}{\ln(x^2)} - 1 \cdot \dfrac{1}{\ln x} =
+                        \dfrac{2x}{2\ln x} - \dfrac{1}{\ln x} = \dfrac{x-1}{\ln x}$.</p>
+                    <div class="box">$\boxed{h'(x) = \dfrac{x-1}{\ln x}}$</div>
+                </div>
+            </div>
+            <div class="question">
+                <strong>3)c)</strong> Prolongement par continuité en $1$.
+                <div class="reponse">
+                    <p>Quand $x \to 1$, on a $\ln x \sim x-1$, donc $\dfrac{x-1}{\ln x} \to 1$.</p>
+                    <p>De plus, en utilisant l'encadrement de la question 4 (ou un développement limité), on montre que
+                        $h(x) \to \ln 2$.</p>
+                    <p>Le prolongement par continuité en $1$ est $\boxed{h(1) = \ln 2}$.</p>
+                </div>
+            </div>
+            <div class="question">
+                <strong>4)a)</strong> Encadrement sur $]0,1[$.
+                <div class="reponse">
+                    <p>Pour $x \in ]0,1[$ et $t \in [x^2, x]$, on a $x^2 \leq t \leq x < 1$.</p>
+                            <p>$\ln$ est croissante, donc $\ln(x^2) \leq \ln t \leq \ln x < 0$.</p>
+                                    <p>En prenant l'inverse (inégalités inversées car négatif) :</p>
+                                    <div class="box">$\boxed{\dfrac{1}{\ln x} \leq \dfrac{1}{\ln t} \leq \dfrac{1}{2\ln
+                                        x}}$</div>
+                </div>
+            </div>
+            <div class="question">
+                <strong>4)b)</strong> Encadrement de $h(x)$.
+                <div class="reponse">
+                    <p>En intégrant sur $[x^2, x]$ pour $x \in ]0,1[$ :</p>
+                    <p>$\dfrac{x-x^2}{\ln x} \leq h(x) \leq \dfrac{x-x^2}{2\ln x}$.</p>
+                    <p>Comme $x-x^2 = -(x^2-x)$ et $\ln x < 0$, on obtient après simplification :</p>
+                            <div class="box">Pour $x > 1$ : $\boxed{\dfrac{x^2-x}{2\ln x} \leq h(x) \leq
+                                \dfrac{x^2-x}{\ln x}}$</div>
+                            <p>(et l'encadrement symétrique pour $x \in ]0,1[$).</p>
+                </div>
+            </div>
+            <div class="question">
+                <strong>4)c)</strong> Limites en $0$ et $+\infty$.
+                <div class="reponse">
+                    <p><strong>En $0^+$</strong> : $\dfrac{x^2-x}{\ln x} = \dfrac{x(x-1)}{\ln x} \to 0$ (car $x \to 0$
+                        et $\dfrac{x-1}{\ln x} \to 1$). Par encadrement, $\boxed{\displaystyle\lim_{x \to 0^+} h(x) =
+                        0}$.</p>
+                    <p><strong>En $+\infty$</strong> : $\dfrac{x^2-x}{\ln x} \to +\infty$. Par encadrement,
+                        $\boxed{\displaystyle\lim_{x \to +\infty} h(x) = +\infty}$.</p>
+                </div>
+            </div>
+            <div class="question">
+                <strong>5)a)</strong> Limites en $1$.
+                <div class="reponse">
+                    <p>L'encadrement donné tend vers $0$ quand $x \to 1$ car $(x-1)^2/\ln x \to 0$.</p>
+                    <p>Donc $\displaystyle\lim_{x \to 1} [h(x) - g(x)] = 0$. Comme $g(x) = \ln 2$, on a :</p>
+                    <div class="box">$\boxed{\displaystyle\lim_{x \to 1} h(x) = \ln 2}$</div>
+                </div>
+            </div>
+            <div class="question">
+                <strong>5)b)</strong> Dérivabilité du prolongement en $1$.
+                <div class="reponse">
+                    <p>Le prolongement vérifie $\displaystyle\lim_{x \to 1} \dfrac{h(x)-h(1)}{x-1} = \lim_{x \to 1}
+                        \dfrac{h'(x)}{1} = \lim_{x \to 1} \dfrac{x-1}{\ln x} = 1$.</p>
+                    <p>Le prolongement est donc dérivable en $1$ avec $\boxed{h'(1) = 1}$.</p>
+                </div>
+            </div>
+            <div class="question">
+                <strong>6)</strong> Branche infinie.
+                <div class="reponse">
+                    <p>Quand $x \to +\infty$, $h(x) \to +\infty$. Étudions $\dfrac{h(x)}{x}$.</p>
+                    <p>Par l'encadrement : $\dfrac{x^2-x}{2x\ln x} \leq \dfrac{h(x)}{x} \leq \dfrac{x^2-x}{x\ln x}$.</p>
+                    <p>Les deux bornes sont équivalentes à $\dfrac{x}{\ln x} \to +\infty$.</p>
+                    <div class="conclusion">$\boxed{\displaystyle\lim_{x \to +\infty} \dfrac{h(x)}{x} = +\infty}$. La
+                        courbe $\mathcal{C}_h$ possède une <strong>branche parabolique de direction $(Oy)$</strong>.
+                    </div>
+                </div>
+            </div>
+            <div class="question">
+                <strong>7)</strong> Allure de $\mathcal{C}_h$.
+                <div class="reponse">
+                    <p>• $h$ est <strong>croissante</strong> sur $]0,1[$ et sur $]1,+\infty[$ car $h'(x) =
+                        \dfrac{x-1}{\ln x} > 0$.</p>
+                    <p>• $\displaystyle\lim_{0^+} h = 0$ avec tangente horizontale ($h'(x) \to 0$).</p>
+                    <p>• Prolongement continu en $(1, \ln 2)$ avec tangente $y = x - 1 + \ln 2$.</p>
+                    <p>• Branche parabolique dans la direction de l'axe des ordonnées en $+\infty$.</p>
+                    <p>• $h(x) < 0$ sur $]0,1[$ et $h(x)> 0$ sur $]1,+\infty[$.</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Corrigé rédigé pour l'Inspection d'Académie de Rufisque — Bac Blanc Mai 2021</p>
+            <p>⏱️ Durée de l'épreuve : 4 heures</p>
+        </footer>
+    </div>
+</body>
+
+</html>

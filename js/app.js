@@ -78,28 +78,18 @@ async function selectExercice(exo) {
   document.getElementById('bc-exercice').textContent = exo.titre;
   document.getElementById('contenu-titre').textContent = exo.num + ' — ' + exo.titre;
 
+  // Cas 1 : contenu inline (sujet/correction dans data.js)
   if (exo.sujet || exo.correction) {
     document.getElementById('sujet-content').innerHTML = exo.sujet || '<p>Sujet non disponible.</p>';
     document.getElementById('correction-content').innerHTML = exo.correction || '<p>Correction non disponible.</p>';
   }
+  // Cas 2 : contenu externe (fichier HTML autonome charge en iframe)
   else if (exo.fichier) {
-    document.getElementById('sujet-content').innerHTML = '<p style="color:var(--muted);padding:2rem;text-align:center;">Chargement...</p>';
-    document.getElementById('correction-content').innerHTML = '<p style="color:var(--muted);padding:2rem;text-align:center;">Chargement...</p>';
-    try {
-      const response = await fetch(exo.fichier);
-      if (!response.ok) throw new Error('HTTP ' + response.status);
-      const html = await response.text();
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, 'text/html');
-      const sujet = doc.getElementById('sujet') ? doc.getElementById('sujet').innerHTML : '<p>Contenu non disponible.</p>';
-      const correction = doc.getElementById('correction') ? doc.getElementById('correction').innerHTML : '<p>Correction non disponible.</p>';
-      document.getElementById('sujet-content').innerHTML = sujet;
-      document.getElementById('correction-content').innerHTML = correction;
-    } catch (e) {
-      document.getElementById('sujet-content').innerHTML = '<p style="color:var(--red);padding:2rem;">Erreur de chargement : ' + e.message + '</p>';
-      document.getElementById('correction-content').innerHTML = '<p style="color:var(--red);padding:2rem;">Erreur de chargement : ' + e.message + '</p>';
-    }
+    const iframe = '<iframe src="'+exo.fichier+'" style="width:100%;min-height:80vh;border:0;background:#fff;border-radius:8px;" loading="lazy"></iframe>';
+    document.getElementById('sujet-content').innerHTML = iframe;
+    document.getElementById('correction-content').innerHTML = '<p style="color:var(--muted);padding:2rem;text-align:center;">Le sujet et la correction sont integres dans l\'onglet Sujet pour ce devoir.</p>';
   }
+  // Cas 3 : aucun contenu defini
   else {
     document.getElementById('sujet-content').innerHTML = '<p style="color:var(--muted);padding:2rem;">Aucun contenu defini pour cet exercice.</p>';
     document.getElementById('correction-content').innerHTML = '<p style="color:var(--muted);padding:2rem;">Aucune correction definie pour cet exercice.</p>';

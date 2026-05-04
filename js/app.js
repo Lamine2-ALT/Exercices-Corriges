@@ -1,4 +1,4 @@
-// MATHSCI — Application (chargement dynamique des exercices)
+// MATHSCI — Application (chargement dynamique des exercices, format hybride)
 
 const state = { niveau: null, discipline: null, chapitre: null, exercice: null };
 
@@ -14,7 +14,7 @@ function selectNiveau(btn) {
   state.niveau = btn.dataset.niveau;
   state.discipline = null; state.chapitre = null; state.exercice = null;
   showBreadcrumb();
-  document.getElementById('bc-niveau').textContent = LABELS[state.niveau];
+  document.getElementById('bc-niveau').textContent = (typeof LABELS !== 'undefined' && LABELS[state.niveau]) || state.niveau;
   document.getElementById('bc-discipline').textContent = '';
   hide('bc-sep2'); hide('bc-chapitre'); hide('bc-sep3'); hide('bc-exercice');
   showSection('step-discipline');
@@ -26,7 +26,7 @@ function selectDiscipline(btn) {
   btn.classList.add('selected');
   state.discipline = btn.dataset.discipline;
   state.chapitre = null; state.exercice = null;
-  document.getElementById('bc-discipline').textContent = LABELS[state.discipline];
+  document.getElementById('bc-discipline').textContent = (typeof LABELS !== 'undefined' && LABELS[state.discipline]) || state.discipline;
   buildChapitreList();
   showSection('step-chapitre');
   setTimeout(() => document.getElementById('step-chapitre').scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
@@ -35,7 +35,7 @@ function selectDiscipline(btn) {
 function buildChapitreList() {
   const container = document.getElementById('chapitre-list');
   container.innerHTML = '';
-  const chapitres = CURRICULUM[state.niveau]?.[state.discipline] || [];
+  const chapitres = (typeof CURRICULUM !== 'undefined' && CURRICULUM[state.niveau] && CURRICULUM[state.niveau][state.discipline]) || [];
   if (chapitres.length === 0) {
     container.innerHTML = '<p style="color:var(--muted);font-style:italic;padding:2rem 0;">Aucun exercice disponible pour ce niveau. Bientot disponible !</p>';
     return;
@@ -44,7 +44,8 @@ function buildChapitreList() {
     const btn = document.createElement('button');
     btn.className = 'chapitre-item';
     btn.onclick = () => selectChapitre(chap);
-    btn.innerHTML = '<span class="chap-num">'+chap.num+'</span><span class="chap-name">'+chap.nom+'</span><span class="chap-count">'+chap.exercices.length+' exo'+(chap.exercices.length > 1 ? 's' : '')+'</span><span style="color:var(--gold);font-size:1.2rem;">›</span>';
+    const n = (chap.exercices && chap.exercices.length) || 0;
+    btn.innerHTML = '<span class="chap-num">'+chap.num+'</span><span class="chap-name">'+chap.nom+'</span><span class="chap-count">'+n+' exo'+(n > 1 ? 's' : '')+'</span><span style="color:var(--gold);font-size:1.2rem;">›</span>';
     container.appendChild(btn);
   });
 }
@@ -62,11 +63,11 @@ function selectChapitre(chap) {
 function buildExerciceList() {
   const container = document.getElementById('exercice-list');
   container.innerHTML = '';
-  state.chapitre.exercices.forEach(exo => {
+  (state.chapitre.exercices || []).forEach(exo => {
     const btn = document.createElement('button');
     btn.className = 'exercice-item';
     btn.onclick = () => selectExercice(exo);
-    btn.innerHTML = '<span class="exo-correction-badge">✓ Corrige</span><span class="exo-num">'+exo.num+'</span><span class="exo-title">'+exo.titre+'</span><span class="exo-meta">'+exo.difficulte+' · '+exo.duree+'</span>';
+    btn.innerHTML = '<span class="exo-correction-badge">✓ Corrige</span><span class="exo-num">'+exo.num+'</span><span class="exo-title">'+exo.titre+'</span><span class="exo-meta">'+(exo.difficulte||'')+' · '+(exo.duree||'')+'</span>';
     container.appendChild(btn);
   });
 }
@@ -77,12 +78,10 @@ async function selectExercice(exo) {
   document.getElementById('bc-exercice').textContent = exo.titre;
   document.getElementById('contenu-titre').textContent = exo.num + ' — ' + exo.titre;
 
-  // Cas 1 : contenu inline (sujet/correction dans data.js)
   if (exo.sujet || exo.correction) {
     document.getElementById('sujet-content').innerHTML = exo.sujet || '<p>Sujet non disponible.</p>';
     document.getElementById('correction-content').innerHTML = exo.correction || '<p>Correction non disponible.</p>';
   }
-  // Cas 2 : contenu externe (fichier HTML à charger)
   else if (exo.fichier) {
     document.getElementById('sujet-content').innerHTML = '<p style="color:var(--muted);padding:2rem;text-align:center;">Chargement...</p>';
     document.getElementById('correction-content').innerHTML = '<p style="color:var(--muted);padding:2rem;text-align:center;">Chargement...</p>';
@@ -101,10 +100,9 @@ async function selectExercice(exo) {
       document.getElementById('correction-content').innerHTML = '<p style="color:var(--red);padding:2rem;">Erreur de chargement : ' + e.message + '</p>';
     }
   }
-  // Cas 3 : aucun contenu défini
   else {
-    document.getElementById('sujet-content').innerHTML = '<p style="color:var(--muted);padding:2rem;">Aucun contenu défini pour cet exercice.</p>';
-    document.getElementById('correction-content').innerHTML = '<p style="color:var(--muted);padding:2rem;">Aucune correction définie pour cet exercice.</p>';
+    document.getElementById('sujet-content').innerHTML = '<p style="color:var(--muted);padding:2rem;">Aucun contenu defini pour cet exercice.</p>';
+    document.getElementById('correction-content').innerHTML = '<p style="color:var(--muted);padding:2rem;">Aucune correction definie pour cet exercice.</p>';
   }
 
   switchTab('sujet');
@@ -136,4 +134,17 @@ function goBack(currentStep) {
   const steps = ['step-niveau','step-discipline','step-chapitre','step-exercice','step-contenu'];
   const idx = steps.indexOf(currentStep);
   if (idx <= 0) return;
-  hideSecti
+  hideSection(currentStep);
+  const prev = steps[idx - 1];
+  showSection(prev);
+  setTimeout(() => document.getElementById(prev).scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+  if (currentStep === 'step-discipline') { document.getElementById('bc-discipline').textContent = ''; hide('bc-sep2'); hide('bc-chapitre'); hide('bc-sep3'); hide('bc-exercice'); }
+  else if (currentStep === 'step-chapitre') { hide('bc-sep2'); hide('bc-chapitre'); hide('bc-sep3'); hide('bc-exercice'); }
+  else { hide('bc-sep3'); hide('bc-exercice'); }
+}
+
+function showSection(id) { const el = document.getElementById(id); if (el) el.classList.remove('hidden'); }
+function hideSection(id) { const el = document.getElementById(id); if (el) el.classList.add('hidden'); }
+function show(id) { const el = document.getElementById(id); if (el) el.classList.remove('bc-hide'); }
+function hide(id) { const el = document.getElementById(id); if (el) el.classList.add('bc-hide'); }
+function showBreadcrumb() { document.getElementById('breadcrumb').style.display = 'flex'; }

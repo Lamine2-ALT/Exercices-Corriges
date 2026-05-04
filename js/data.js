@@ -764,15 +764,14 @@ const CURRICULUM = {
             id: "ts1m-bac-e1", num: "EX.01", titre: "Bac Blanc Rufisque 2017",
             difficulte: "Difficile", duree: "4h",
             fichier: "exercices/terminale-s1/maths/Bac-blanc/Bac-blanc-Rufisque-2017.html"
+          },
+          {
+            id: "ts1m-bac-e2", num: "EX.02", titre: "Bac Blanc Rufisque 2021",
+            difficulte: "Difficile", duree: "4h",
+            fichier_sujet: "exercices/terminale-s1/maths/Bac-blanc/Bac-blanc-rufisque-2021-sujet.html",
+            fichier_correction: "exercices/terminale-s1/maths/Bac-blanc/Bac-blanc-rufisque-2021-corrige.html"
           }
         ]
-      }
-      ,
-      {
-        id: "ts1m-bac-e2", num: "EX.02", titre: "Bac Blanc Rufisque 2021",
-        difficulte: "Difficile", duree: "4h",
-        fichier_sujet: "exercices/terminale-s1/maths/Bac-blanc/Bac-blanc-rufisque-2021-sujet.html",
-        fichier_correction: "exercices/terminale-s1/maths/Bac-blanc/Bac-blanc-rufisque-2021-corrige.html"
       }
     ],
     "physique": [

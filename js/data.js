@@ -756,6 +756,14 @@ const CURRICULUM = {
             `
           }
         ]
+      },
+      {
+        id: "ts1m-bac", num: "BAC", nom: "Bac Blanc",
+        exercices: [
+          { id: "ts1m-bac-e1", num: "EX.01", titre: "Bac Blanc Rufisque 2017",
+            difficulte: "Difficile", duree: "4h",
+            fichier: "exercices/terminale-s1/maths/Bac-blanc/Bac-blanc-Rufisque-2017.html" }
+        ]
       }
     ],
     "physique": [

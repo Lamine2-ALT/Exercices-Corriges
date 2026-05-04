@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Corrigé Bac Blanc 2017 — Lycée Blaise Diagne — S1</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  :root {
+    --bg: #f4f6f9;
+    --card: #ffffff;
+    --text: #1a1a2e;
+    --text-light: #4a4a6a;
+    --primary: #1e3a8a;
+    --primary-light: #3b82f6;
+    --accent: #f59e0b;
+    --accent-light: #fbbf24;
+    --success: #10b981;
+    --border: #e2e8f0;
+    --shadow: 0 4px 20px rgba(0,0,0,0.08);
+    --shadow-hover: 0 8px 30px rgba(0,0,0,0.12);
+    --radius: 14px;
+    --radius-sm: 8px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.75;
+    font-size: 16px;
+  }
+  /* Header */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: linear-gradient(135deg, var(--primary) 0%, #0f172a 100%);
+    color: white;
+    padding: 18px 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  }
+  .topbar-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .topbar h1 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
+  .topbar span {
+    font-size: 0.85rem;
+    opacity: 0.85;
+    background: rgba(255,255,255,0.12);
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+  /* Nav rapide */
+  .nav-quick {
+    max-width: 960px;
+    margin: 20px auto 0;
+    padding: 0 20px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .nav-quick a {
+    text-decoration: none;
+    background: var(--card);
+    color: var(--primary);
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: 2px solid var(--border);
+    transition: all 0.2s;
+  }
+  .nav-quick a:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    transform: translateY(-2px);
+  }
+  /* Container */
+  .container {
+    max-width: 960px;
+    margin: 20px auto 60px;
+    padding: 0 20px;
+  }
+  /* Card exercice */
+  .exo-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 30px;
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+  }
+  .exo-card:hover {
+    box-shadow: var(--shadow-hover);
+  }
+  .exo-header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: white;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .exo-badge {
+    background: var(--accent);
+    color: #1a1a2e;
+    font-weight: 800;
+    font-size: 0.8rem;
+    padding: 5px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .exo-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+  .exo-body {
+    padding: 24px;
+  }
+  /* Question */
+  .question {
+    margin-bottom: 28px;
+    padding-bottom: 24px;
+    border-bottom: 1px dashed var(--border);
+  }
+  .question:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+  .q-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .q-num {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+    color: #1a1a2e;
+    font-weight: 800;
+    font-size: 0.95rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(245,158,11,0.3);
+  }
+  .q-title {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--text);
+    padding-top: 5px;
+  }
+  .q-content {
+    padding-left: 48px;
+  }
+  @media (max-width: 600px) {
+    .q-content { padding-left: 0; }
+    .q-header { flex-direction: column; gap: 8px; }
+  }
+  /* Sous-question */
+  .subq {
+    margin: 18px 0 10px;
+    font-weight: 700;
+    color: var(--primary-light);
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .subq::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 2px;
+    transform: rotate(45deg);
+  }
+  /* Math blocks */
+  .math-block {
+    background: #f1f5f9;
+    border-left: 4px solid var(--primary-light);
+    padding: 16px 20px;
+    margin: 14px 0;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    overflow-x: auto;
+  }
+  .math-block::-webkit-scrollbar { height: 6px; }
+  .math-block::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+  /* Boxed result */
+  .result-box {
+    background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);
+    border: 2px solid var(--primary-light);
+    padding: 16px 20px;
+    border-radius: var(--radius-sm);
+    margin: 16px 0;
+    text-align: center;
+    font-weight: 600;
+  }
+  /* Conclusion */
+  .conclusion {
+    background: linear-gradient(135deg, #d1fae5 0%, #ecfdf5 100%);
+    border-left: 4px solid var(--success);
+    padding: 16px 20px;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    margin: 16px 0;
+    color: #065f46;
+    font-weight: 600;
+  }
+  /* Remarque */
+  .remarque {
+    background: #fffbeb;
+    border-left: 4px solid var(--accent);
+    padding: 14px 18px;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    margin: 14px 0;
+    color: #92400e;
+    font-size: 0.95rem;
+  }
+  .remarque strong { color: #78350f; }
+  /* Lists */
+  ul, ol { margin: 10px 0 10px 24px; }
+  li { margin-bottom: 6px; }
+  /* Part title (Problème) */
+  .part-title {
+    display: inline-block;
+    background: var(--text);
+    color: white;
+    padding: 8px 18px;
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    font-size: 1rem;
+    margin: 24px 0 16px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  }
+  /* Two columns */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 14px 0;
+  }
+  @media (max-width: 600px) {
+    .two-col { grid-template-columns: 1fr; }
+    body { font-size: 15px; }
+    .exo-body { padding: 18px; }
+    .exo-title { font-size: 1.1rem; }
+  }
+  /* Footer */
+  .page-footer {
+    text-align: center;
+    padding: 30px 20px;
+    color: var(--text-light);
+    font-size: 0.9rem;
+  }
+  .page-footer strong { color: var(--primary); }
+  /* Smooth anchor offset */
+  [id] { scroll-margin-top: 80px; }
+  /* Strong color */
+  strong { color: var(--primary); }
+  p { margin-bottom: 10px; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <h1>Corrigé Bac Blanc 2017</h1>
+    <span>Lycée Blaise Diagne — Série S1 — 4h</span>
+  </div>
+</div>
+
+<!-- NAV RAPIDE -->
+<div class="nav-quick">
+  <a href="#exo1">Exercice 1</a>
+  <a href="#exo2">Exercice 2</a>
+  <a href="#pb">Problème</a>
+</div>
+
+<div class="container">
+
+<!-- ==================== EXERCICE 1 ==================== -->
+<div class="exo-card" id="exo1">
+  <div class="exo-header">
+    <div class="exo-badge">4 points</div>
+    <div class="exo-title">Exercice 1</div>
+  </div>
+  <div class="exo-body">
+
+    <div class="question">
+      <div class="q-header">
+        <div class="q-num">1</div>
+        <div class="q-title">Variation de \(f_a\), maximum et ensemble décrit par \(M_a\)</div>
+      </div>
+      <div class="q-content">
+        <p>On a \(f_a(x) = x\,e^{a-x}\) définie sur \(\mathbb{R}\).</p>
+        <p><strong>Dérivée :</strong></p>
+        <div class="math-block">
+          \[f_a'(x) = e^{a-x} + x \cdot (-e^{a-x}) = (1-x)\,e^{a-x}\]
+        </div>
+        <p>Comme \(e^{a-x} > 0\) pour tout \(x\), le signe de \(f_a'(x)\) est celui de \((1-x)\).</p>
+        <ul>
+          <li>\(f_a'(x) > 0\) si \(x < 1\) : \(f_a\) est <strong>strictement croissante</strong> sur \(]-\infty; 1]\)</li>
+          <li>\(f_a'(x) < 0\) si \(x > 1\) : \(f_a\) est <strong>strictement décroissante</strong> sur \([1; +\infty[\)</li>
+        </ul>
+        <p><strong>Maximum :</strong> \(f_a\) admet un maximum global en \(x_a = 1\).</p>
+        <div class="math-block">
+          \[f_a(1) = 1 \cdot e^{a-1} = e^{a-1}\]
+        </div>
+        <p>Le point \(M_a\) a pour coordonnées \(\bigl(1; e^{a-1}\bigr)\).</p>
+        <p><strong>Ensemble décrit :</strong> quand \(a\) décrit \(\mathbb{R}_+^*\) :</p>
+        <ul>
+          <li>L'abscisse reste \(x = 1\)</li>
+          <li>L'ordonnée \(y = e^{a-1} > e^{-1} = \frac{1}{e}\)</li>
+        </ul>
+        <div class="result-box">
+          L'ensemble est la demi-droite verticale d'équation \(x = 1\) avec \(y > \dfrac{1}{e}\).
+        </div>
+        <div class="remarque">
+          <strong>Construction :</strong> tracer la droite \(x = 1\) et ne conserver que la partie strictement au-dessus du point \(\bigl(1; \frac{1}{e}\bigr)\).
+        </div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <div class="q-num">2</div>
+        <div class="q-title">Intégration par parties et relation avec \(e^a\)</div>
+      </div>
+      <div class="q-content">
+        <p>Posons \(u(t) = t\) et \(v'(t) = e^t\). Alors \(u'(t) = 1\) et \(v(t) = e^t\).</p>
+        <p>Par intégration par parties sur \([0; a]\) :</p>
+        <div class="math-block">
+          \[\int_0^a t\,e^t\,dt = \Big[t\,e^t\Big]_0^a - \int_0^a e^t\,dt = a\,e^a - \bigl[e^t\bigr]_0^a = a\,e^a - (e^a - 1)\]
+        </div>
+        <div class="result-box">
+          \[\int_0^a t\,e^t\,dt = (a-1)\,e^a + 1\]
+        </div>
+        <p><strong>Déduction :</strong> calculons \(\displaystyle\int_0^a (a-t)\,e^t\,dt\).</p>
+        <div class="math-block">
+          \[\int_0^a (a-t)\,e^t\,dt = a\int_0^a e^t\,dt - \int_0^a t\,e^t\,dt = a(e^a-1) - \bigl((a-1)e^a + 1\bigr)\]
+        </div>
+        <div class="math-block">
+          \[= a\,e^a - a - a\,e^a + e^a - 1 = e^a - a - 1\]
+        </div>
+        <div class="result-box">
+          \[e^a = 1 + a + \int_0^a (a-t)\,e^t\,dt\]
+        </div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <div class="q-num">3</div>
+        <div class="q-title">Relation de récurrence pour \(I_n\)</div>
+      </div>
+      <div class="q-content">
+        <p>On a \(\displaystyle I_n = \int_0^a \frac{(a-t)^n}{n!}\,e^t\,dt\).</p>
+        <p>Intégrons par parties avec \(u(t) = \frac{(a-t)^n}{n!}\) et \(v'(t) = e^t\) :</p>
+        <div class="math-block">
+          \[u'(t) = -\frac{(a-t)^{n-1}}{(n-1)!}, \qquad v(t) = e^t\]
+        </div>
+        <div class="math-block">
+          \[I_n = \left[\frac{(a-t)^n}{n!}\,e^t\right]_0^a + \int_0^a \frac{(a-t)^{n-1}}{(n-1)!}\,e^t\,dt = 0 - \frac{a^n}{n!} + I_{n-1}\]
+        </div>
+        <p>En réindexant \(n \to n+1\) :</p>
+        <div class="result-box">
+          \[I_n = \frac{a^{n+1}}{(n+1)!} + I_{n+1}\]
+        </div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <div class="q-num">4</div>
+        <div class="q-title">Formule de récurrence et majoration de \(I_n\)</div>
+      </div>
+      <div class="q-content">
+        <p><strong>Formule par récurrence :</strong></p>
+        <p><em>Initialisation (\(n=0\)) :</em> d'après la question 2), \(e^a = 1 + a + I_0\) avec \(I_0 = \int_0^a (a-t)\,e^t\,dt\).</p>
+        <p>Or d'après 3) avec \(n=0\) : \(I_0 = a + I_1\).</p>
+        <p>Donc \(e^a = 1 + a + a + I_1\) ? Vérifions : non, reprenons.</p>
+        <p>En fait \(I_0 = \frac{a^1}{1!} + I_1 = a + I_1\), donc \(e^a = 1 + a + a + I_1\) est faux.</p>
+        <p>Reprenons : la question 2) donne \(e^a = 1 + a + \int_0^a (a-t)e^t dt\).</p>
+        <p>Or \(I_0 = \int_0^a \frac{(a-t)^0}{0!}e^t dt = \int_0^a e^t dt = e^a - 1\).</p>
+        <p>Et avec la formule de 3) : \(I_0 = a + I_1\), donc \(I_1 = e^a - 1 - a\).</p>
+        <p>Vérifions : \(1 + a + I_1 = 1 + a + e^a - 1 - a = e^a\). <strong>C'est exact !</strong></p>
+        <p><em>Hérédité :</em> si \(e^a = 1 + a + \frac{a^2}{2!} + \ldots + \frac{a^n}{n!} + I_n\), alors en remplaçant \(I_n = \frac{a^{n+1}}{(n+1)!} + I_{n+1}\) :</p>
+        <div class="result-box">
+          \[e^a = 1 + a + \frac{a^2}{2!} + \ldots + \frac{a^n}{n!} + \frac{a^{n+1}}{(n+1)!} + I_{n+1}\]
+        </div>
+        <p><strong>Majoration :</strong> sur \([0; a]\), \(0 \leq a-t \leq a\), donc \((a-t)^n \leq a^n\).</p>
+        <div class="math-block">
+          \[0 \leq I_n = \int_0^a \frac{(a-t)^n}{n!}\,e^t\,dt \leq \frac{a^n}{n!}\int_0^a e^t\,dt = \frac{a^n}{n!}(e^a - 1)\]
+        </div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <div class="q-num">5</div>
+        <div class="q-title">Limite et développement de \(e^a\)</div>
+      </div>
+      <div class="q-content">
+        <p>Posons \(U_n = \frac{a^n}{n!}\). Alors :</p>
+        <div class="math-block">
+          \[\frac{U_{n+1}}{U_n} = \frac{a^{n+1}}{(n+1)!} \cdot \frac{n!}{a^n} = \frac{a}{n+1}\]
+        </div>
+        <p>Comme \(\lim_{n \to \infty} \frac{a}{n+1} = 0\), il existe \(n_0\) tel que pour tout \(n \geq n_0\) :</p>
+        <div class="math-block">
+          \[\frac{U_{n+1}}{U_n} \leq \frac{1}{2}\]
+        </div>
+        <p>(prendre \(n_0 \geq 2a - 1\)).</p>
+        <p>Par conséquent \(U_{n+1} \leq \frac{1}{2}U_n\) pour \(n \geq n_0\), d'où :</p>
+        <div class="math-block">
+          \[U_n \leq \left(\frac{1}{2}\right)^{n-n_0} U_{n_0} \xrightarrow[n \to \infty]{} 0\]
+        </div>
+        <p>Par encadrement avec \(0 \leq I_n \leq (e^a - 1)U_n\), on obtient :</p>
+        <div class="result-box">
+          \[\lim_{n \to \infty} I_n = 0 \quad\text{et}\quad \lim_{n \to \infty} U_n = 0\]
+        </div>
+        <p>En passant à la limite dans \(e^a = 1 + a + \frac{a^2}{2!} + \ldots + \frac{a^n}{n!} + I_n\) :</p>
+        <div class="conclusion">
+          \[\lim_{n \to \infty} \left(1 + a + \frac{a^2}{2!} + \ldots + \frac{a^n}{n!}\right) = e^a\]
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ==================== EXERCICE 2 ==================== -->
+<div class="exo-card" id="exo2">
+  <div class="exo-header">
+    <div class="exo-badge">5 points</div>
+    <div class="exo-title">Exercice 2 — Nombres complexes</div>
+  </div>
+  <div class="exo-body">
+
+    <div class="question">
+      <div class="q-header">
+        <div class="q-num">1</div>
+        <div class="q-title">Formes exponentielle de \(c\) et algébrique de \(d\)</div>
+      </div>
+      <div class="q-content">
+        <p>Données : \(a = 1\), \(b = e^{i\pi/3}\), \(c = \frac{3}{2} + i\frac{\sqrt{3}}{2}\), \(d = \frac{\sqrt{3}}{2}e^{-i\pi/6}\).</p>
+        <div class="subq">a) Forme exponentielle de \(c\)</div>
+        <div class="math-block">
+          \[|c| = \sqrt{\left(\frac{3}{2}\right)^2 + \left(\frac{\sqrt{3}}{2}\right)^2} = \sqrt{\frac{9+3}{4}} = \sqrt{3}\]
+        </div>
+        <div class="math-block">
+          \[c = \sqrt{3}\left(\frac{\sqrt{3}}{2} + i\frac{1}{2}\right) = \sqrt{3}\left(\cos\frac{\pi}{6} + i\sin\frac{\pi}{6}\right) = \sqrt{3}\,e^{i\pi/6}\]
+        </div>
+        <div class="subq">b) Forme algébrique de \(d\)</div>
+        <div class="math-block">
+          \[d = \frac{\sqrt{3}}{2}\left(\cos\left(-\frac{\pi}{6}\right) + i\sin\left(-\frac{\pi}{6}\right)\right) = \frac{\sqrt{3}}{2}\left(\frac{\sqrt{3}}{2} - i\frac{1}{2}\right)\]
+        </div>
+        <div class="result-box">
+          \[d = \frac{3}{4} - i\frac{\sqrt{3}}{4}\]
+        </div>
+        <div class="subq">c) Représentation des points</div>
+        <div class="remarque">
+          <strong>Points à placer :</strong> \(A(1,0)\) sur l'axe réel ; \(B(\frac{1}{2}, \frac{\sqrt{3}}{2})\) sur le cercle trigonométrique (angle \(\pi/3\)) ; \(C(\frac{3}{2}, \frac{\sqrt{3}}{2})\) même ordonnée que \(B\) ; \(D(\frac{3}{4}, -\frac{\sqrt{3}}{4})\) à l'intérieur du cercle unité.
+        </div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <div class="q-num">2</div>
+        <div class="q-title">Similitude directe \(s\) de centre \(O\) transformant \(A\) en \(C\)</div>
+      </div>
+      <div class="q-content">
+        <p>Une similitude directe de centre \(O\) s'écrit \(z' = k\,e^{i\theta}\,z\).</p>
+        <p>\(s(A) = C\) donne \(c = k\,e^{i\theta} \cdot a = k\,e^{i\theta}\) (car \(a=1\)).</p>
+        <p>Donc \(k\,e^{i\theta} = c = \sqrt{3}\,e^{i\pi/6}\).</p>
+        <div class="two-col">
+          <div class="result-box" style="margin:0">
+            <strong>Rapport :</strong> \(k = \sqrt{3}\)
+          </div>
+          <div class="result-box" style="margin:0">
+            <strong>Angle :</strong> \(\theta = \dfrac{\pi}{6}\)
+          </div>
+        </div>
+        <div class="result-box">
+          \[s : z' = \sqrt{3}\,e^{i\pi/6}\,z\]
+        </div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <div class="q-num">3</div>
+        <div class="q-title">Alignement de \(F\), \(C\) et \(G\)</div>
+      </div>
+      <div class="q-content">
+        <p>\(F = s(D)\) et \(G = s(C)\). Calculons leurs affixes :</p>
+        <div class="math-block">
+          \[z_F = \sqrt{3}\,e^{i\pi/6} \cdot d = \sqrt{3}\,e^{i\pi/6} \cdot \frac{\sqrt{3}}{2}e^{-i\pi/6} = \frac{3}{2}\]
+        </div>
+        <div class="math-block">
+          \[z_G = \sqrt{3}\,e^{i\pi/6} \cdot c = \sqrt{3}\,e^{i\pi/6} \cdot \sqrt{3}\,e^{i\pi/6} = 3\,e^{i\pi/3} = \frac{3}{2} + i\frac{3\sqrt{3}}{2}\]
+        </div>
+        <p>Vérifions l'alignement :</p>
+        <div class="math-block">
+          \[z_C - z_F = \frac{3}{2} + i\frac{\sqrt{3}}{2} - \frac{3}{2} = i\frac{\sqrt{3}}{2}\]
+        </div>
+        <div class="math-block">
+          \[z_G - z_F = \frac{3}{2} + i\frac{3\sqrt{3}}{2} - \frac{3}{2} = i\frac{3\sqrt{3}}{2}\]
+        </div>
+        <p>On remarque que \(z_C - z_F = \frac{1}{3}(z_G - z_F)\) : les vecteurs sont colinéaires.</p>
+        <div class="conclusion">
+          Les points \(F\), \(C\) et \(G\) sont alignés.
+        </div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <div class="q-num">4</div>
+        <div class="q-title">Transformation \(\varphi\)</div>
+      </div>
+      <div class="q-content">
+        <p>\(\varphi : z' = e^{-i\frac{2\pi}{3}}\,\overline{z} + \frac{3}{2} + i\frac{\sqrt{3}}{2}\)</p>
+
+        <div class="subq">a) Nature et éléments de \(r\)</div>
+        <p>\(r : z'_1 = e^{-i\frac{2\pi}{3}}z_1 + \frac{3}{2} + i\frac{\sqrt{3}}{2}\)</p>
+        <p>C'est une <strong>rotation</strong> (forme \(z' = e^{i\alpha}z + \beta\) avec \(|e^{i\alpha}| = 1\), \(\alpha \neq 0\)).</p>
+        <ul>
+          <li><strong>Angle :</strong> \(\alpha = -\frac{2\pi}{3}\)</li>
+        </ul>
+        <p><strong>Centre \(\omega\) :</strong> point invariant vérifiant :</p>
+        <div class="math-block">
+          \[\omega = e^{-i\frac{2\pi}{3}}\omega + \frac{3}{2} + i\frac{\sqrt{3}}{2}\]
+        </div>
+        <div class="math-block">
+          \[\omega\left(1 - e^{-i\frac{2\pi}{3}}\right) = \frac{3}{2} + i\frac{\sqrt{3}}{2}\]
+        </div>
+        <p>Or \(1 - e^{-i\frac{2\pi}{3}} = 1 - \left(-\frac{1}{2} - i\frac{\sqrt{3}}{2}\right) = \frac{3}{2} + i\frac{\sqrt{3}}{2}\).</p>
+        <p>Donc \(\omega = 1\).</p>
+        <div class="result-box">
+          \(r\) est la rotation de centre \(\Omega(1)\) et d'angle \(-\dfrac{2\pi}{3}\).
+        </div>
+        <p>Forme simplifiée : \(z'_1 - 1 = e^{-i\frac{2\pi}{3}}(z_1 - 1)\).</p>
+
+        <div class="subq">b) Décomposition de \(\varphi\)</div>
+        <p>\(\varphi\) peut s'écrire comme la composée :</p>
+        <div class="result-box">
+          \[\varphi = r \circ \sigma_{(Ox)}\]
+        </div>
+        <p>où \(\sigma_{(Ox)}\) est la réflexion d'axe \((Ox)\) (conjugaison \(z \mapsto \overline{z}\)).</p>
+        <p>Vérification : \(r(\overline{z}) = e^{-i\frac{2\pi}{3}}\overline{z} + \frac{3}{2} + i\frac{\sqrt{3}}{2} = z'\).</p>
+
+        <div class="subq">c) Points invariants et nature de \(\varphi\)</div>
+        <p>Testons \(z = 1\) :</p>
+        <div class="math-block">
+          \[z' = e^{-i\frac{2\pi}{3}} \cdot 1 + \frac{3}{2} + i\frac{\sqrt{3}}{2} = -\frac{1}{2} - i\frac{\sqrt{3}}{2} + \frac{3}{2} + i\frac{\sqrt{3}}{2} = 1\]
+        </div>
+        <p>Donc <strong>\(A(1)\) est invariant</strong>.</p>
+        <p>\(\varphi\) est un anti-déplacement (composée d'une rotation et d'une réflexion, d'angle total non nul). C'est une <strong>réflexion glissée</strong>.</p>
+
+        <div class="subq">d) Image de \(C\) par \(\varphi\)</div>
+        <div class="math-block">
+          \[z'_C = e^{-i\frac{2\pi}{3}} \cdot \overline{c} + c = e^{-i\frac{2\pi}{3}} \cdot \sqrt{3}\,e^{-i\pi/6} + \sqrt{3}\,e^{i\pi/6}\]
+        </div>
+        <div class="math-block">
+          \[= \sqrt{3}\,e^{-i\frac{5\pi}{6}} + \sqrt{3}\,e^{i\pi/6} = \sqrt{3}\left(-\frac{\sqrt{3}}{2} - i\frac{1}{2}\right) + \sqrt{3}\left(\frac{\sqrt{3}}{2} + i\frac{1}{2}\right) = 0\]
+        </div>
+        <div class="result-box">
+          \[\varphi(C) = O\]
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ==================== PROBLEME ==================== -->
+<div class="exo-card" id="pb">
+  <div class="exo-header">
+    <div class="exo-badge">11 points</div>
+    <div class="exo-title">Problème</div>
+  </div>
+  <div class="exo-body">
+    <p style="margin-bottom:20px; font-style:italic; color:var(--text-light); border-left:3px solid var(--accent); padding-left:14px;">
+      <strong>Objectif :</strong> montrer que \(\displaystyle\forall n \in \mathbb{N}^*, \sum_{k=0}^{n} \frac{n^k}{k!} > \frac{e^n}{2}\).
+    </p>
+
+    <div class="part-title">Partie A — Étude de \(g\)</div>
+
+    <div class="question">
+      <div class="q-header">
+        <div class="q-num">1</div>
+        <div class="q-title">Symétrie par rapport à \(O\)</div>
+      </div>
+      <div class="q-content">
+        <p>\(g(x) = \ln\left|\frac{x+1}{1-x}\right| - x\) définie sur \(]-1;1[\).</p>
+        <p>Le domaine est symétrique par rapport à \(0\). Calculons \(g(-x)\) :</p>
+        <div class="math-block">
+          \[g(-x) = \ln\left|\frac{-x+1}{1+x}\right| + x = \ln\left|\frac{1-x}{1+x}\right| + x = -\ln\left|\frac{1+x}{1-x}\right| + x = -g(x)\]
+        </div>
+        <div class="conclusion">
+          \(g\) est <strong>impaire</strong>, donc \(\mathcal{C}_g\) est symétrique par rapport à l'origine \(O\).
+        </div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <div class="q-num">2</div>
+        <div class="q-title">Étude complète de \(g\)</div>
+      </div>
+      <div class="q-content">
+        <div class="subq">a) Variations</div>
+        <p>Sur \(]-1;1[\), \(\frac{x+1}{1-x} > 0\), donc :</p>
+        <div class="math-block">
+          \[g(x) = \ln(x+1) - \ln(1-x) - x\]
+        </div>
+        <div class="math-block">
+          \[g'(x) = \frac{1}{x+1} + \frac{1}{1-x} - 1 = \frac{2}{1-x^2} - 1 = \frac{1+x^2}{1-x^2}\]
+        </div>
+        <p>Sur \(]-1;1[\), \(g'(x) > 0\) : \(g\) est <strong>strictement croissante</strong>.</p>
+
+        <div class="subq">b) Asymptotes</div>
+        <p>En \(x \to 1^-\) : \(\ln(1-x) \to -\infty\), donc \(-\ln(1-x) \to +\infty\).</p>
+        <div class="math-block">
+          \[\lim_{x \to 1^-} g(x) = +\infty\]
+        </div>
+        <p>La droite <strong>\(x = 1\)</strong> est asymptote verticale. Par imparité, <strong>\(x = -1\)</strong> l'est aussi.</p>
+
+        <div class="subq">c) Tracé de \(\mathcal{C}_g\)</div>
+        <div class="remarque">
+          \(g(0) = 0\). La courbe passe par l'origine, est croissante, avec deux branches infinies vers les asymptotes verticales \(x = \pm 1\).
+        </div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <div class="q-num">3</div>
+        <div class="q-title">Signe de \(g\)</div>
+      </div>
+      <div class="q-content">
+        <p>Comme \(g(0) = 0\) et \(g\) strictement croissante :</p>
+        <ul>
+          <li>\(g(x) > 0\) pour \(x \in ]0;1[\)</li>
+          <li>\(g(x) < 0\) pour \(x \in ]-1;0[\)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="part-title">Partie B — Étude de \(f_n\)</div>
+
+    <div class="question">
+      <div class="q-header">
+        <div class="q-num">1</div>
+        <div class="q-title">Relation fondamentale</div>
+      </div>
+      <div class="q-content">
+        <p>\(f_n(x) = x^n e^{-x}\). Calculons :</p>
+        <div class="math-block">
+          \[\frac{f_n(n+x)}{f_n(n-x)} = \frac{(n+x)^n e^{-(n+x)}}{(n-x)^n e^{-(n-x)}} = \left(\frac{n+x}{n-x}\right)^n e^{-2x}\]
+        </div>
+        <p>En prenant le logarithme :</p>
+        <div class="math-block">
+          \[\ln\left(\frac{f_n(n+x)}{f_n(n-x)}\right) = n\ln\left(\frac{n+x}{n-x}\right) - 2x\]
+        </div>
+        <p>Posons \(t = \frac{x}{n}\) :</p>
+        <div class="math-block">
+          \[= n\left[\ln\left(\frac{1+t}{1-t}\right) - 2t\right] = n\,g(t) = n\,g\left(\frac{x}{n}\right)\]
+        </div>
+        <div class="result-box">
+          \[\ln\left(\frac{f_n(n+x)}{f_n(n-x)}\right) = n \, g\left(\frac{x}{n}\right)\]
+        </div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <div class="q-num">2</div>
+        <div class="q-title">Conséquence sur \(f_n\)</div>
+      </div>
+      <div class="q-content">
+        <p>Pour \(x \in ]0;n[\), on a \(\frac{x}{n} \in ]0;1[\), donc \(g\bigl(\frac{x}{n}\bigr) > 0\).</p>
+        <p>Ainsi \(\ln\bigl(\frac{f_n(n+x)}{f_n(n-x)}\bigr) > 0\), d'où :</p>
+        <div class="result-box">
+          \[\forall x \in ]0;n[, \quad f_n(n+x) > f_n(n-x)\]
+        </div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <div class="q-num">3</div>
+        <div class="q-title">Primitives déduites</div>
+      </div>
+      <div class="q-content">
+        <div class="subq">a) Primitives de \(t \mapsto f_n(n+t)\) et \(t \mapsto f_n(n-t)\)</div>
+        <p>Si \(F\) est une primitive de \(f_n\) sur \(\mathbb{R}\) :</p>
+        <ul>
+          <li>\(\frac{d}{dt}F(n+t) = f_n(n+t)\), donc \(t \mapsto F(n+t)\) est primitive de \(t \mapsto f_n(n+t)\)</li>
+          <li>\(\frac{d}{dt}[-F(n-t)] = f_n(n-t)\), donc \(t \mapsto -F(n-t)\) est primitive de \(t \mapsto f_n(n-t)\)</li>
+        </ul>
+
+        <div class="subq">b) Égalités intégrales</div>
+        <p>En intégrant de \(0\) à \(n\) :</p>
+        <div class="math-block">
+          \[\int_0^n f_n(n+t)\,dt = F(2n) - F(n)\]
+        </div>
+        <div class="math-block">
+          \[\int_0^n f_n(n-t)\,dt = F(n) - F(0)\]
+        </div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <div class="q-num">4</div>
+        <div class="q-title">Inégalité intégrale</div>
+      </div>
+      <div class="q-content">
+        <p>De la question 2), \(f_n(n+t) > f_n(n-t)\) pour \(t \in ]0;n[\).</p>
+        <p>Par croissance de l'intégrale :</p>
+        <div class="math-block">
+          \[\int_0^n f_n(n+t)\,dt > \int_0^n f_n(n-t)\,dt\]
+        </div>
+        <p>D'où :</p>
+        <div class="result-box">
+          \[F(2n) + F(0) > 2F(n)\]
+        </div>
+      </div>
+    </div>
+
+    <div class="part-title">Partie C — Conclusion</div>
+
+    <div class="question">
+      <div class="q-header">
+        <div class="q-num">1</div>
+        <div class="q-title">Calcul explicite de \(I_n(x)\)</div>
+      </div>
+      <div class="q-content">
+        <p>\(I_n(x) = \displaystyle\int_0^x t^n e^{-t}\,dt\).</p>
+        <div class="subq">a) Relation de récurrence</div>
+        <p>Par intégration par parties (\(u = t^n\), \(v' = e^{-t}\)) :</p>
+        <div class="math-block">
+          \[I_n(x) = \left[-t^n e^{-t}\right]_0^x + n\int_0^x t^{n-1}e^{-t}\,dt = -x^n e^{-x} + n\,I_{n-1}(x)\]
+        </div>
+        <div class="subq">b) Formule explicite</div>
+        <p><em>Initialisation (\(n=0\)) :</em></p>
+        <div class="math-block">
+          \[I_0(x) = \int_0^x e^{-t}\,dt = 1 - e^{-x} = 0!\left(1 - e^{-x}\sum_{k=0}^{0}\frac{x^k}{k!}\right)\]
+        </div>
+        <p><em>Hérédité :</em> supposons \(I_n(x) = n!\bigl(1 - e^{-x}\sum_{k=0}^{n}\frac{x^k}{k!}\bigr)\).</p>
+        <div class="math-block">
+          \[I_{n+1}(x) = (n+1)I_n(x) - x^{n+1}e^{-x} = (n+1)!\left(1 - e^{-x}\sum_{k=0}^{n}\frac{x^k}{k!}\right) - x^{n+1}e^{-x}\]
+        </div>
+        <div class="math-block">
+          \[= (n+1)!\left(1 - e^{-x}\sum_{k=0}^{n+1}\frac{x^k}{k!}\right)\]
+        </div>
+        <div class="conclusion">
+          \[I_n(x) = n!\left(1 - e^{-x}\sum_{k=0}^{n}\frac{x^k}{k!}\right)\]
+        </div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <div class="q-num">2</div>
+        <div class="q-title">Valeur sur \([0;+\infty[\)</div>
+      </div>
+      <div class="q-content">
+        <p>On sait que \(\displaystyle\int_0^{+\infty} t^n e^{-t}\,dt = \Gamma(n+1) = n!\).</p>
+        <p>En passant à la limite \(x \to +\infty\) dans la formule précédente :</p>
+        <div class="math-block">
+          \[n! = \lim_{x \to +\infty} n!\left(1 - e^{-x}\sum_{k=0}^{n}\frac{x^k}{k!}\right) = n!\]
+        </div>
+        <p>(car \(e^{-x}\sum_{k=0}^{n}\frac{x^k}{k!} \to 0\) par croissances comparées).</p>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <div class="q-num">3</div>
+        <div class="q-title">Application de l'inégalité de la Partie B</div>
+      </div>
+      <div class="q-content">
+        <p>Prenons \(F(x) = I_n(x)\) comme primitive de \(f_n\) s'annulant en \(0\).</p>
+        <p>L'inégalité \(F(2n) + F(0) > 2F(n)\) avec \(F(0) = 0\) donne \(F(2n) > 2F(n)\).</p>
+        <p>Or \(F(x) = n!\bigl(1 - e^{-x}\sum_{k=0}^{n}\frac{x^k}{k!}\bigr)\). Donc :</p>
+        <div class="math-block">
+          \[n!\left(1 - e^{-2n}\sum_{k=0}^{n}\frac{(2n)^k}{k!}\right) > 2n!\left(1 - e^{-n}\sum_{k=0}^{n}\frac{n^k}{k!}\right)\]
+        </div>
+        <p>En simplifiant par \(n! > 0\) :</p>
+        <div class="math-block">
+          \[2e^{-n}\sum_{k=0}^{n}\frac{n^k}{k!} > 1 + e^{-2n}\sum_{k=0}^{n}\frac{(2n)^k}{k!}\]
+        </div>
+        <p>Comme le terme de droite est \(> 1\) :</p>
+        <div class="math-block">
+          \[2e^{-n}\sum_{k=0}^{n}\frac{n^k}{k!} > 1\]
+        </div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="q-header">
+        <div class="q-num">4</div>
+        <div class="q-title">Conclusion finale</div>
+      </div>
+      <div class="q-content">
+        <p>De l'inégalité précédente :</p>
+        <div class="math-block">
+          \[\sum_{k=0}^{n}\frac{n^k}{k!} > \frac{1}{2e^{-n}} = \frac{e^n}{2}\]
+        </div>
+        <div class="conclusion" style="font-size:1.15em; text-align:center; padding:22px;">
+          \[\boxed{\forall n \in \mathbb{N}^*, \quad \sum_{k=0}^{n}\frac{n^k}{k!} > \frac{e^n}{2}}\]
+        </div>
+        <div class="remarque">
+          <strong>Interprétation :</strong> cette inégalité montre que la somme partielle de la série exponentielle évaluée en \(x=n\) dépasse la moitié de \(e^n\). C'est un résultat remarquable lié à la médiane de la loi de Poisson de paramètre \(n\).
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div>
+
+<div class="page-footer">
+  <p><strong>Lycée Blaise Diagne</strong> — Cellule de Mathématiques</p>
+  <p>Bac Blanc 2017 — Série S1 — Durée : 4 heures</p>
+</div>
+
+</body>
+</html>

@@ -707,7 +707,7 @@ const CURRICULUM = {
               <div class="question" data-q="3.">
                 <p>On utilise \(\lim_{u\to 0}\dfrac{\sin u}{u} = 1\) :</p>
                 <div class="step">
-                  <span class="eq">\(\dfrac{\sin(3x)}{x} = 3 \cdot \dfrac{\sin(3x)}{3x} \\xrightarrow[x\to 0]{} 3 \times 1 = 3\)</span>
+                  <span class="eq">\(\dfrac{\sin(3x)}{x} = 3 \cdot \dfrac{\sin(3x)}{3x} \xrightarrow[x\to 0]{} 3 \times 1 = 3\)</span>
                 </div>
                 <div class="result">\(\boxed{\lim_{x\to 0} \dfrac{\sin(3x)}{x} = 3}\)</div>
               </div>

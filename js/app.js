@@ -72,6 +72,10 @@ function buildExerciceList() {
   });
 }
 
+function makeIframe(src) {
+  return '<iframe src="'+src+'" style="width:100%;min-height:80vh;border:0;background:#fff;border-radius:8px;" loading="lazy"></iframe>';
+}
+
 async function selectExercice(exo) {
   state.exercice = exo;
   show('bc-sep3'); show('bc-exercice');
@@ -83,10 +87,18 @@ async function selectExercice(exo) {
     document.getElementById('sujet-content').innerHTML = exo.sujet || '<p>Sujet non disponible.</p>';
     document.getElementById('correction-content').innerHTML = exo.correction || '<p>Correction non disponible.</p>';
   }
-  // Cas 2 : contenu externe (fichier HTML autonome charge en iframe)
+  // Cas 2a : sujet ET correction dans deux fichiers separes
+  else if (exo.fichier_sujet || exo.fichier_correction) {
+    document.getElementById('sujet-content').innerHTML = exo.fichier_sujet
+      ? makeIframe(exo.fichier_sujet)
+      : '<p style="color:var(--muted);padding:2rem;">Sujet non disponible.</p>';
+    document.getElementById('correction-content').innerHTML = exo.fichier_correction
+      ? makeIframe(exo.fichier_correction)
+      : '<p style="color:var(--muted);padding:2rem;">Correction non disponible.</p>';
+  }
+  // Cas 2b : un seul fichier (sujet+correction integres)
   else if (exo.fichier) {
-    const iframe = '<iframe src="'+exo.fichier+'" style="width:100%;min-height:80vh;border:0;background:#fff;border-radius:8px;" loading="lazy"></iframe>';
-    document.getElementById('sujet-content').innerHTML = iframe;
+    document.getElementById('sujet-content').innerHTML = makeIframe(exo.fichier);
     document.getElementById('correction-content').innerHTML = '<p style="color:var(--muted);padding:2rem;text-align:center;">Le sujet et la correction sont integres dans l\'onglet Sujet pour ce devoir.</p>';
   }
   // Cas 3 : aucun contenu defini

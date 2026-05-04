@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MathSci — Exercices & Corrections</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+  <header class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="logo-mark">∑</div>
+      <h1 class="site-title">MATHSCI</h1>
+      <p class="site-sub">Exercices & Corrections · Mathématiques & Sciences Physiques</p>
+      <div class="level-pills">
+        <span class="pill-label">Choisissez votre niveau ↓</span>
+      </div>
+    </div>
+    <div class="scroll-hint">▾</div>
+  </header>
+
+  <!-- ═══════════════════════════ MAIN APP ═══════════════════════ -->
+  <main class="app">
+
+    <!-- ÉTAPE 1 : Niveau -->
+    <section class="step-section" id="step-niveau">
+      <div class="step-header">
+        <span class="step-num">01</span>
+        <h2>Niveau</h2>
+      </div>
+      <div class="niveau-grid">
+        <button class="niveau-card" data-niveau="troisieme" onclick="selectNiveau(this)">
+          <span class="niveau-badge">3ème</span>
+          <span class="niveau-name">Troisième</span>
+          <span class="niveau-cycle">Collège</span>
+        </button>
+        <button class="niveau-card" data-niveau="seconde" onclick="selectNiveau(this)">
+          <span class="niveau-badge">2nde</span>
+          <span class="niveau-name">Seconde</span>
+          <span class="niveau-cycle">Lycée · S</span>
+        </button>
+        <button class="niveau-card" data-niveau="premiere-s1" onclick="selectNiveau(this)">
+          <span class="niveau-badge">1ère S1</span>
+          <span class="niveau-name">Première S1</span>
+          <span class="niveau-cycle">Lycée · S</span>
+        </button>
+        <button class="niveau-card" data-niveau="premiere-s2" onclick="selectNiveau(this)">
+          <span class="niveau-badge">1ère S2</span>
+          <span class="niveau-name">Première S2</span>
+          <span class="niveau-cycle">Lycée · S</span>
+        </button>
+        <button class="niveau-card" data-niveau="terminale-s1" onclick="selectNiveau(this)">
+          <span class="niveau-badge">Tle S1</span>
+          <span class="niveau-name">Terminale S1</span>
+          <span class="niveau-cycle">Lycée · S</span>
+        </button>
+        <button class="niveau-card" data-niveau="terminale-s2" onclick="selectNiveau(this)">
+          <span class="niveau-badge">Tle S2</span>
+          <span class="niveau-name">Terminale S2</span>
+          <span class="niveau-cycle">Lycée · S</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ÉTAPE 2 : Discipline -->
+    <section class="step-section hidden" id="step-discipline">
+      <div class="step-header">
+        <span class="step-num">02</span>
+        <h2>Discipline</h2>
+        <button class="back-btn" onclick="goBack('step-discipline')">← Retour</button>
+      </div>
+      <div class="discipline-grid">
+        <button class="discipline-card math" data-discipline="maths" onclick="selectDiscipline(this)">
+          <span class="disc-icon">∫</span>
+          <span class="disc-name">Mathématiques</span>
+          <span class="disc-sub">Algèbre · Géométrie · Analyse</span>
+        </button>
+        <button class="discipline-card physique" data-discipline="physique" onclick="selectDiscipline(this)">
+          <span class="disc-icon">⚛</span>
+          <span class="disc-name">Sciences Physiques</span>
+          <span class="disc-sub">Physique · Chimie</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ÉTAPE 3 : Chapitre -->
+    <section class="step-section hidden" id="step-chapitre">
+      <div class="step-header">
+        <span class="step-num">03</span>
+        <h2>Chapitre</h2>
+        <button class="back-btn" onclick="goBack('step-chapitre')">← Retour</button>
+      </div>
+      <div class="chapitre-list" id="chapitre-list">
+        <!-- Généré dynamiquement -->
+      </div>
+    </section>
+
+    <!-- ÉTAPE 4 : Exercice -->
+    <section class="step-section hidden" id="step-exercice">
+      <div class="step-header">
+        <span class="step-num">04</span>
+        <h2>Exercice</h2>
+        <button class="back-btn" onclick="goBack('step-exercice')">← Retour</button>
+      </div>
+      <div class="exercice-list" id="exercice-list">
+        <!-- Généré dynamiquement -->
+      </div>
+    </section>
+
+    <!-- CONTENU : Exercice + Correction -->
+    <section class="step-section hidden" id="step-contenu">
+      <div class="step-header">
+        <span class="step-num">✓</span>
+        <h2 id="contenu-titre">Exercice</h2>
+        <button class="back-btn" onclick="goBack('step-contenu')">← Retour</button>
+      </div>
+
+      <div class="contenu-tabs">
+        <button class="ctab active" id="tab-sujet" onclick="switchTab('sujet')">📄 Sujet</button>
+        <button class="ctab" id="tab-correction" onclick="switchTab('correction')">✅ Correction</button>
+      </div>
+
+      <div class="contenu-body">
+        <div id="pane-sujet" class="pane active">
+          <div id="sujet-content" class="exercice-paper"></div>
+        </div>
+        <div id="pane-correction" class="pane hidden">
+          <div id="correction-content" class="exercice-paper"></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- BREADCRUMB flottant -->
+  <div class="breadcrumb" id="breadcrumb" style="display:none">
+    <span id="bc-niveau"></span>
+    <span class="bc-sep">›</span>
+    <span id="bc-discipline"></span>
+    <span class="bc-sep bc-hide" id="bc-sep2">›</span>
+    <span id="bc-chapitre" class="bc-hide"></span>
+    <span class="bc-sep bc-hide" id="bc-sep3">›</span>
+    <span id="bc-exercice" class="bc-hide"></span>
+  </div>
+
+  <!-- KaTeX pour les formules -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body,{delimiters:[{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -77,20 +77,34 @@ async function selectExercice(exo) {
   document.getElementById('bc-exercice').textContent = exo.titre;
   document.getElementById('contenu-titre').textContent = exo.num + ' — ' + exo.titre;
 
-  document.getElementById('sujet-content').innerHTML = '<p style="color:var(--muted);padding:2rem;text-align:center;">Chargement...</p>';
-  document.getElementById('correction-content').innerHTML = '<p style="color:var(--muted);padding:2rem;text-align:center;">Chargement...</p>';
-
-  try {
-    const response = await fetch(exo.fichier);
-    const html = await response.text();
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html');
-    const sujet = doc.getElementById('sujet') ? doc.getElementById('sujet').innerHTML : '<p>Contenu non disponible.</p>';
-    const correction = doc.getElementById('correction') ? doc.getElementById('correction').innerHTML : '<p>Correction non disponible.</p>';
-    document.getElementById('sujet-content').innerHTML = sujet;
-    document.getElementById('correction-content').innerHTML = correction;
-  } catch (e) {
-    document.getElementById('sujet-content').innerHTML = '<p style="color:var(--red);">Erreur de chargement.</p>';
+  // Cas 1 : contenu inline (sujet/correction dans data.js)
+  if (exo.sujet || exo.correction) {
+    document.getElementById('sujet-content').innerHTML = exo.sujet || '<p>Sujet non disponible.</p>';
+    document.getElementById('correction-content').innerHTML = exo.correction || '<p>Correction non disponible.</p>';
+  }
+  // Cas 2 : contenu externe (fichier HTML à charger)
+  else if (exo.fichier) {
+    document.getElementById('sujet-content').innerHTML = '<p style="color:var(--muted);padding:2rem;text-align:center;">Chargement...</p>';
+    document.getElementById('correction-content').innerHTML = '<p style="color:var(--muted);padding:2rem;text-align:center;">Chargement...</p>';
+    try {
+      const response = await fetch(exo.fichier);
+      if (!response.ok) throw new Error('HTTP ' + response.status);
+      const html = await response.text();
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      const sujet = doc.getElementById('sujet') ? doc.getElementById('sujet').innerHTML : '<p>Contenu non disponible.</p>';
+      const correction = doc.getElementById('correction') ? doc.getElementById('correction').innerHTML : '<p>Correction non disponible.</p>';
+      document.getElementById('sujet-content').innerHTML = sujet;
+      document.getElementById('correction-content').innerHTML = correction;
+    } catch (e) {
+      document.getElementById('sujet-content').innerHTML = '<p style="color:var(--red);padding:2rem;">Erreur de chargement : ' + e.message + '</p>';
+      document.getElementById('correction-content').innerHTML = '<p style="color:var(--red);padding:2rem;">Erreur de chargement : ' + e.message + '</p>';
+    }
+  }
+  // Cas 3 : aucun contenu défini
+  else {
+    document.getElementById('sujet-content').innerHTML = '<p style="color:var(--muted);padding:2rem;">Aucun contenu défini pour cet exercice.</p>';
+    document.getElementById('correction-content').innerHTML = '<p style="color:var(--muted);padding:2rem;">Aucune correction définie pour cet exercice.</p>';
   }
 
   switchTab('sujet');
@@ -122,17 +136,4 @@ function goBack(currentStep) {
   const steps = ['step-niveau','step-discipline','step-chapitre','step-exercice','step-contenu'];
   const idx = steps.indexOf(currentStep);
   if (idx <= 0) return;
-  hideSection(currentStep);
-  const prev = steps[idx - 1];
-  showSection(prev);
-  setTimeout(() => document.getElementById(prev).scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
-  if (currentStep === 'step-discipline') { document.getElementById('bc-discipline').textContent = ''; hide('bc-sep2'); hide('bc-chapitre'); hide('bc-sep3'); hide('bc-exercice'); }
-  else if (currentStep === 'step-chapitre') { hide('bc-sep2'); hide('bc-chapitre'); hide('bc-sep3'); hide('bc-exercice'); }
-  else { hide('bc-sep3'); hide('bc-exercice'); }
-}
-
-function showSection(id) { const el = document.getElementById(id); if (el) el.classList.remove('hidden'); }
-function hideSection(id) { const el = document.getElementById(id); if (el) el.classList.add('hidden'); }
-function show(id) { const el = document.getElementById(id); if (el) el.classList.remove('bc-hide'); }
-function hide(id) { const el = document.getElementById(id); if (el) el.classList.add('bc-hide'); }
-function showBreadcrumb() { document.getElementById('breadcrumb').style.display = 'flex'; }
+  hideSecti
